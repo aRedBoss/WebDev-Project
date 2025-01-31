@@ -1,14 +1,13 @@
 import "./App.css";
-import Navbar  from "./component/Navbar";
- 
+import Navbar from "./components/Navbar";
 
-import Service  from "./component/Service";
+import Service from "./components/Service";
 
 function App() {
   return (
     <>
       <Navbar />
-      <Service/>
+      <Service />
     </>
   );
 }
