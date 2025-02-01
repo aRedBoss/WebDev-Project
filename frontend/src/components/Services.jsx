@@ -1,8 +1,8 @@
  
- 
- export default function Service() {
-   return (
-     <div>Service</div>
-   )
- }
- 
+
+export default function Services() {
+  return (
+    <div>Services</div>
+  )
+}
+
