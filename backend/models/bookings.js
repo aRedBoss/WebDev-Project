@@ -1,2 +1,0 @@
-import bookings from '../data';
-
