@@ -1,5 +1,3 @@
-import React from "react";
-
 const SignIn = () => {
   return (
     <div className="flex items-center justify-center h-screen bg-gray-100">
@@ -21,8 +19,7 @@ const SignIn = () => {
           <div className="mb-4">
             <label
               className="block text-sm font-semibold mb-2"
-              htmlFor="password"
-            >
+              htmlFor="password">
               Password
             </label>
             <input
@@ -36,15 +33,13 @@ const SignIn = () => {
           <div className="mb-4 text-left">
             <a
               href="#forgot-password"
-              className="text-sm text-blue-500 hover:underline"
-            >
+              className="text-sm text-blue-500 hover:underline">
               Forgot Password?
             </a>
           </div>
           <button
             type="submit"
-            className="w-full py-2 bg-green-500 text-white rounded hover:bg-green-400 transition duration-200"
-          >
+            className="w-full py-2 bg-green-500 text-white rounded hover:bg-green-400 transition duration-200">
             Sign in
           </button>
         </form>

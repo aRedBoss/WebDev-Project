@@ -1,10 +1,9 @@
-import React from "react";
 import Register from "../components/Register.jsx";
 
-function RegisterPage(props) {
+function RegisterPage() {
   return (
     <div>
-      <RegisterPage />
+      <Register />
     </div>
   );
 }
