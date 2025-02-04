@@ -1,4 +1,5 @@
-import bgImage from "../assets/barber-logo.png";
+import React from "react";
+import bgImage from "../assets/barber-logo.png"; // Replace with your image path
 
 const Hero = () => {
   return (
@@ -8,21 +9,20 @@ const Hero = () => {
         backgroundImage: `url(${bgImage})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-      }}
-    >
+      }}>
       <div className="absolute inset-0 bg-green-950 opacity-90 z-0"></div>
       <div className="absolute inset-0 bg-white opacity-20 z-0"></div>
 
       {/* Content */}
-      <div className="flex justify-center max-w-7xl mt-8">
+      <div className="flex justify-center max-w-7xl mt-8 px-4 sm:px-8 md:px-16 lg:px-24">
         <div className="relative z-10 text-left">
-          <h1 className="text-8xl text-white font-bold mb-4">
-            Musa barber shop{" "}
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-white font-bold mb-4">
+            Musa barber shop
           </h1>
-          <p className="text-3xl mb-8 text-white">
+          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl mb-8 text-white">
             Elevate your grooming with style
           </p>
-          <div className="flex space-x-4">
+          <div className="flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0">
             <button className="px-6 py-3 bg-white text-black rounded hover:bg-lime-50">
               VIEW SERVICES
             </button>
