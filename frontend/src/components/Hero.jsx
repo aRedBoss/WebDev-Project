@@ -7,7 +7,7 @@ const Hero = () => {
         <div className="absolute inset-0 bg-white opacity-20 z-0"></div>
         
         {/* Content */}
-        <div className="flex max-w-7xl justify-center mt-16">
+        <div className="flex max-w-7xl justify-center mt-8">
         <div className="relative z-10 text-left">
         <h1 className="text-8xl text-white font-bold mb-4 ">
           Musa barber shop
