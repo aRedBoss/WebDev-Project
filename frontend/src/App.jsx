@@ -1,13 +1,16 @@
-import "./App.css";
+ 
 import Navbar from "./components/Navbar";
+import Services from "./components/Services";
+import "./App.css"; // Global styles
 
-import Service from "./components/Service";
+
+ 
 
 function App() {
   return (
     <>
       <Navbar />
-      <Service />
+      <Services />
     </>
   );
 }
