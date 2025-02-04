@@ -1,6 +1,6 @@
 import SignIn from "../components/SignIn.jsx";
 
-const MyComponent = () => {
+const SignInPage = () => {
   return (
     <div>
       <SignIn />
@@ -8,4 +8,4 @@ const MyComponent = () => {
   );
 };
 
-export default MyComponent;
+export default SignInPage;
