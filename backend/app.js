@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const userRouter = require('./routes/userRouter');
 const port = 4000;
-require('./db');
+require('./config/db');
 
 
 app.use(express.json());
