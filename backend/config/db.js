@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const url = 'mongodb+srv://alprstigehussein:LPv1aqPWyOFnqWTM@cluster0.mbvwa.mongodb.net/WebDev-Musa-parpershop?retryWrites=true&w=majority&appName=Cluster0';
+const url = '';
 
 mongoose.connect(url, {
     useNewUrlParser: true,
