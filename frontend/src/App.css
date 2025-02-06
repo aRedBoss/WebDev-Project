@@ -8,18 +8,13 @@ body {
 /* Services Section */
 .services {
   max-width: 1200px;
-  margin: 40px auto;
+  margin: 5rem auto;
   text-align: center;
 }
 
 .services h2 {
-  font-size: 2rem;
+  font-size: 2.5rem;
   margin-bottom: 10px;
-}
-
-.services p {
-  color: #555;
-  margin-bottom: 20px;
 }
 
 /* Service Grid */
