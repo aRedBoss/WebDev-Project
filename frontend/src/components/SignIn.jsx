@@ -44,7 +44,7 @@ const SignIn = () => {
           </button>
         </form>
         <p className="mt-4 text-center text-sm">
-          Don't have an account yet?
+          Don't have an account yet?&nbsp;
           <a href="#register" className="text-blue-500 hover:underline">
             Register for free
           </a>
