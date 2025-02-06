@@ -1,18 +1,18 @@
 import "./App.css";
 import Navbar from "./components/Navbar";
 import Services from "./components/Services";
-import Hero from "./components/Hero";
-import RegisterPage from "./pages/RegisterPage";
-import SignInPage from "./pages/SignInPage";
+import Home from "./components/Home";
+import Register from "./components/Register";
+import SignIn from "./components/SignIn";
 
 function App() {
   return (
     <>
       <Navbar />
-      <Hero />
+      <Home />
       <Services />
-      <SignInPage />
-      <RegisterPage />
+      <SignIn />
+      <Register />
     </>
   );
 }

@@ -1,10 +1,9 @@
-import React from "react";
 import bgImage from "../assets/barber-logo.png"; // Replace with your image path
 
 const Hero = () => {
   return (
     <section
-      className="flex flex-col h-screen w-full bg-cover justify-center bg-gray-100 text-center py-20 relative"
+      className="flex z-0 flex-col h-screen w-full bg-cover justify-center bg-gray-100 text-center py-20 relative"
       style={{
         backgroundImage: `url(${bgImage})`,
         backgroundSize: "cover",
