@@ -15,14 +15,15 @@ function ContactInfo() {
     <div className="">
       <div className="">
         {/* Contact Info */}
-        <div className="bg-white w-md md:w-sx md:mx-6 py-10 px-15 rounded-lg">
+        <div className="bg-white">
           <h2 className="text-3xl font-bold text-gray-800 mb-4">
             Contact Info
           </h2>
           <p className="text-lg font-bold text-gray-800">Email:</p>
           <a
             href="mailto:ahmedmslawi@gmail.com"
-            className="text-blue-500 hover:underline block mb-4">
+            className="text-blue-500 hover:underline block mb-4"
+          >
             ahmedmslawi@gmail.com
           </a>
 

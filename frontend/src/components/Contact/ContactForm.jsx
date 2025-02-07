@@ -14,7 +14,7 @@ function ContactForm() {
   };
 
   return (
-    <div className="w-md p-8 bg-white rounded-lg shadow-md md:m-4 sm:m-0">
+    <div className="bg-white">
       <h2 className="text-xl font-bold mb-4 text-emerald-700">GET IN TOUCH</h2>
       <h3 className="text-gray-600 text-2xl mb-6">We're here to assist you!</h3>
 
@@ -63,7 +63,8 @@ function ContactForm() {
         <div className="mb-6">
           <label
             htmlFor="message"
-            className="block text-gray-700 font-bold mb-2">
+            className="block text-gray-700 font-bold mb-2"
+          >
             Message
           </label>
           <textarea
@@ -73,11 +74,13 @@ function ContactForm() {
             className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
             placeholder="Message"
             rows="4"
-            required></textarea>
+            required
+          ></textarea>
         </div>
         <button
           type="submit"
-          className="w-full bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:ring-green-300">
+          className="w-full bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:ring-green-300"
+        >
           SUBMIT
         </button>
       </form>
