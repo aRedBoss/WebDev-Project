@@ -1,7 +1,9 @@
+import "./SignIn.css";
+
 const SignIn = () => {
   return (
     <div className="flex items-center justify-center h-screen bg-gray-100 p-6 sm:p-0">
-      <div className="bg-white text-black p-8 rounded-lg shadow-md max-w-sm w-full">
+      <div className="sign-in bg-white text-black p-8 rounded-lg shadow-md max-w-sm w-full">
         <h2 className="text-3xl font-bold mb-6 text-center">Sign In</h2>
         <form>
           <div className="mb-4">
@@ -40,11 +42,11 @@ const SignIn = () => {
           <button
             type="submit"
             className="w-full py-2 bg-green-500 text-white rounded hover:bg-green-400 transition duration-200">
-            Sign in
+            Sign In
           </button>
         </form>
-        <p className="mt-4 text-center text-sm">
-          Don't have an account yet?
+        <p className="mt-4 text-center text-xs">
+          Don't have an account yet?&nbsp;
           <a href="#register" className="text-blue-500 hover:underline">
             Register for free
           </a>

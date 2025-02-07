@@ -1,4 +1,4 @@
-import bgImage from "../assets/barber-logo.png"; // Replace with your image path
+import bgImage from "../../assets/barber-logo.png"; // Replace with your image path
 
 const Hero = () => {
   return (
@@ -18,9 +18,9 @@ const Hero = () => {
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-white font-bold mb-4">
             Musa barber shop
           </h1>
-          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl mb-8 text-white">
+          <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl mb-8 text-white">
             Elevate your grooming with style
-          </p>
+          </h3>
           <div className="flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0">
             <button className="px-6 py-3 bg-white text-black rounded hover:bg-lime-50">
               VIEW SERVICES

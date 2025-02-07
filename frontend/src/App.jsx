@@ -1,20 +1,20 @@
 import "./App.css";
-import Navbar from "./components/Navbar";
-import Services from "./components/Services";
-import Home from "./components/Home";
-import Register from "./components/Register";
-import SignIn from "./components/SignIn";
-import AboutUs from "./components/AboutUs";
-
+import Navbar from "./components/Navbar/Navbar.jsx";
+import Home from "./components/Home/Home.jsx";
+import AboutUs from "./components/AboutUs/AboutUs.jsx";
+import Services from "./components/Services/Services.jsx";
+import Contact from "./components/Contact/Contact.jsx";
+import SignIn from "./components/SignIn/SignIn.jsx";
+import Register from "./components/Register/Register.jsx";
 
 function App() {
   return (
     <>
       <Navbar />
       <Home />
-      <Services />
       <AboutUs />
-
+      <Services />
+      <Contact />
       <SignIn />
       <Register />
     </>
