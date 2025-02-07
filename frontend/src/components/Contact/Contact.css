@@ -1,0 +1,25 @@
+/* ContactPage.css */
+
+p {
+  font-size: 1rem;
+}
+
+.contact-container {
+  padding: 20px;
+  background-color: #f0f2f5;
+}
+
+.flex-container {
+  gap: 20px;
+}
+
+.hours-table {
+  height: 70%;
+}
+
+@media (min-width: 768px) {
+  .contact-container > * {
+    flex: 1;
+    max-width: 50%;
+  }
+}

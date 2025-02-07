@@ -1,12 +1,11 @@
 import "./App.css";
-import Navbar from "./components/Navbar";
-import Services from "./components/Services";
-import Home from "./components/Home";
-import Register from "./components/Register";
-import SignIn from "./components/SignIn";
-import AboutUs from "./components/AboutUs";
-
-import Contact from "./components/Contact";
+import Navbar from "./components/Navbar/Navbar.jsx";
+import Services from "./components/Services/Services.jsx";
+import Home from "./components/Home/Home.jsx";
+import Register from "./components/Register/Register.jsx";
+import SignIn from "./components/SignIn/SignIn.jsx";
+import AboutUs from "./components/AboutUs/AboutUs.jsx";
+import Contact from "./components/Contact/Contact.jsx";
 
 function App() {
   return (
@@ -15,7 +14,6 @@ function App() {
       <Home />
       <Services />
       <AboutUs />
-
       <Contact />
       <SignIn />
       <Register />

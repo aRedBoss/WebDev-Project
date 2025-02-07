@@ -1,3 +1,5 @@
+// import "./Contact.css";
+
 function ContactInfo() {
   const hours = [
     { day: "Monday", time: "9:00 - 18:00" },
