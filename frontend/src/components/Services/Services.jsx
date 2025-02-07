@@ -27,7 +27,7 @@ const Services = () => {
   return (
     <section className="services">
       <h2>Our Services</h2>
-      <p>Elevate your style with our expert services.</p>
+      <p className="bold-text">Elevate your style with our expert services.</p>
       <div className="service-list">
         {services.map((service, index) => (
           <ServiceCard key={index} {...service} />

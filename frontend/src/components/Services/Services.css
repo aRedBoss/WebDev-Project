@@ -5,8 +5,9 @@
   text-align: center;
 }
 
-.services h2 {
+h2 {
   font-size: 2.5rem;
+  font-weight: bold;
   margin-bottom: 10px;
 }
 
