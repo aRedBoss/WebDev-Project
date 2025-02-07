@@ -1,7 +1,8 @@
+import "./Register.css";
 const Register = () => {
   return (
     <div className="flex items-center justify-center h-screen bg-gray-200 p-6 sm:p-0">
-      <div className="bg-white text-black p-8 rounded-lg shadow-md max-w-sm w-full">
+      <div className="register bg-white text-black p-8 rounded-lg shadow-md max-w-sm w-full">
         <h2 className="text-3xl font-bold mb-6 text-center">Register</h2>
         <form>
           <div className="mb-4">
