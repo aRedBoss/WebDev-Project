@@ -63,7 +63,58 @@ body {
 .service-image {
   width: 100%;
   height: 200px;
-  object-fit: cover; /* Ensure images fit */
+  object-fit: cover; 
+}
+
+
+.about-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  padding: 50px;
+  gap: 30px;
+}
+
+.about-image img {
+  width: 450px;
+  border-radius: 10px;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.about-content {
+  max-width: 500px;
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.bold-text {
+  font-weight: bold;
+}
+
+p {
+  font-size: 1.1rem;
+  color: #333;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.read-more {
+  background: none;
+  border: 2px solid black;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.read-more:hover {
+  background: black;
+  color: white;
 }
 
 /* ContactPage.css */

@@ -4,6 +4,8 @@ import Services from "./components/Services";
 import Home from "./components/Home";
 import Register from "./components/Register";
 import SignIn from "./components/SignIn";
+import AboutUs from "./components/AboutUs";
+
 import Contact from "./components/Contact";
 
 function App() {
@@ -12,6 +14,8 @@ function App() {
       <Navbar />
       <Home />
       <Services />
+      <AboutUs />
+
       <Contact />
       <SignIn />
       <Register />
