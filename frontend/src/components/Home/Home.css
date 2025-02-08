@@ -10,6 +10,11 @@ h1 {
   margin-bottom: -1rem;
 }
 
+.hero-container .hero-content h2 {
+  font-size: 2.3rem; /* Adjust font size for smaller screens */
+  font-weight: lighter;
+}
+
 .hero-container {
   display: flex;
   align-items: center; /* Centers vertically */
@@ -66,7 +71,7 @@ h1 {
 /* Responsive Styles */
 @media (max-width: 768px) {
   .hero-container {
-    padding-left: 5%; /* Adjust padding for smaller screens */
+    padding: 5%; /* Adjust padding for smaller screens */
   }
 
   .hero-content {
@@ -78,8 +83,9 @@ h1 {
     font-size: 3rem; /* Adjust font size for smaller screens */
   }
 
-  h2 {
-    font-size: 2rem; /* Adjust font size for smaller screens */
+  .hero-container .hero-content h2 {
+    font-size: 2rem;
+    font-weight: lighter; /* Adjust font size for smaller screens */
   }
 
   .hero-buttons {

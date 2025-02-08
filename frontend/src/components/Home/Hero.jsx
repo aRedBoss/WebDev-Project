@@ -9,7 +9,7 @@ const Hero = () => {
       <div className="hero-overlay"></div>
       <div className="hero-content">
         <h1>Musa Barber Shop</h1>
-        <h2>Elevate your grooming with style</h2>
+        <h2 className="sub-heading">Elevate your grooming with style</h2>
         <div className="hero-buttons">
           <button className="btn-primary">VIEW SERVICES</button>
           <button className="btn-secondary">BOOK NOW</button>
