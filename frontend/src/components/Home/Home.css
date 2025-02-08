@@ -1,6 +1,7 @@
 /* Basic styles */
 body {
   margin: 0;
+  padding: 0;
   font-family: Arial, sans-serif;
 }
 
@@ -38,7 +39,6 @@ h1 {
   position: relative;
   z-index: 10;
   max-width: 900px;
-  padding: 20px;
   color: white;
   text-align: left; /* Aligns text to the left */
   display: flex;
@@ -58,7 +58,7 @@ h1 {
   cursor: pointer;
 }
 
-.btn-primary {
+.btn-hero {
   background-color: white;
   color: black;
 }
@@ -91,7 +91,7 @@ h1 {
   }
 
   h1 {
-    font-size: 3.4rem; /* Adjust font size for smaller screens */
+    font-size: 4rem; /* Adjust font size for smaller screens */
   }
 
   .hero-container .hero-content h2 {
@@ -107,5 +107,27 @@ h1 {
   .hero-buttons button {
     width: 100%; /* Full width buttons on mobile */
     padding: 12px; /* Adjust padding for smaller screens */
+  }
+}
+
+@media (max-width: 720px) {
+  h1 {
+    font-size: 3.1rem; /* Adjust font size for smaller screens */
+  }
+
+  .hero-container .hero-content h2 {
+    font-size: 1.3rem;
+    font-weight: lighter; /* Adjust font size for smaller screens */
+  }
+}
+
+@media (max-width: 520px) {
+  h1 {
+    font-size: 2.4rem; /* Adjust font size for smaller screens */
+  }
+
+  .hero-container .hero-content h2 {
+    font-size: 1.3rem;
+    font-weight: lighter; /* Adjust font size for smaller screens */
   }
 }

@@ -1,0 +1,89 @@
+/* Navbar.css file */
+.navbar {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.desktop-menu {
+  display: flex;
+  gap: 10px; /* Space between links and buttons */
+}
+
+.desktop-buttons {
+  display: flex;
+  gap: 10px; /* Space between buttons */
+}
+
+.desktop-menu a {
+  padding: 5px 10px; /* Add some padding to the links */
+  text-decoration: none; /* Remove underlines from links */
+  color: #333; /* Or your link color */
+}
+
+.desktop-menu button {
+  padding: 10px 20px;
+  background-color: #007bff; /* Example button color */
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+/* Mobile Styles (Media Query) */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column; /* Stack navbar items vertically */
+    align-items: flex-start; /* Align to the left */
+  }
+
+  .desktop-menu {
+    display: none; /* Hide desktop menu */
+  }
+
+  .mobile-menu-icon {
+    /* Hamburger icon styles */
+    display: block;
+    padding: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 50;
+    background-color: #333;
+    color: white;
+    border-radius: 5px;
+  }
+
+  .mobile-menu {
+    display: none; /* Initially hidden */
+    position: relative; /* Or absolute if needed */
+    top: auto; /* Or 100% if absolute */
+    left: 0;
+    right: 0;
+    background-color: white;
+    padding: 10px;
+    z-index: 40;
+  }
+
+  .mobile-menu a {
+    display: block;
+    padding: 5px 0;
+    text-decoration: none;
+    color: #333;
+  }
+
+  .mobile-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .mobile-buttons button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 100%; /* Full width on mobile */
+  }
+}
