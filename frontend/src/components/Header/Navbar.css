@@ -1,0 +1,128 @@
+/* Basic styles */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Navbar Styles */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  position: relative;
+  background-color: white;
+  width: 100%; /* Make navbar full width */
+}
+
+.logo img {
+  height: 50px;
+  margin-left: 30px;
+}
+
+.menu {
+  display: flex;
+  gap: 20px;
+}
+
+.menu a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+  margin-right: 30px;
+}
+
+/* Mobile Styles */
+.hamburger {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+.mobile-menu {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 70px;
+  left: 0;
+  right: 0;
+  background-color: white;
+  padding: 10px;
+  border-top: 2px solid #ddd;
+  z-index: 1000;
+}
+
+.mobile-menu a {
+  padding: 10px;
+  text-decoration: none;
+  color: black;
+}
+
+.mobile-buttons {
+  display: flex;
+  flex-direction: column; /* Stack buttons vertically */
+  gap: 10px;
+  width: 100%; /* Make buttons full width */
+  padding: 10px;
+}
+
+.mobile-buttons .btn-primary,
+.mobile-buttons .btn-secondary {
+  width: 100%; /* Make individual buttons full width */
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column; /* Stack navbar items in a column */
+    align-items: flex-start; /* Align items to the left */
+  }
+
+  .menu,
+  .buttons {
+    display: none; /* Hide menu and buttons on mobile */
+  }
+
+  .hamburger {
+    display: block; /* Show hamburger menu icon on mobile */
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    padding: 5px 10px;
+    border-radius: 5px;
+  }
+
+  .hamburger:hover {
+    background-color: #f9f9f9;
+  }
+
+  .mobile-menu {
+    display: flex; /* Show mobile menu */
+    flex-direction: column; /* Stack items vertically */
+  }
+
+  .mobile-menu a {
+    width: 100%; /* Full width navigation links */
+    background-color: #f9f9f9;
+    margin-bottom: 10px;
+    text-align: center;
+    border-radius: 5px;
+  }
+
+  .mobile-menu a:hover {
+    background-color: #f3f3f3;
+    border-radius: 5px;
+  }
+}
+
+@media (min-width: 769px) {
+  .mobile-menu {
+    display: none; /* Hide mobile menu on larger screens */
+  }
+}
