@@ -1,0 +1,45 @@
+.btn-primary {
+  background-color: black;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.btn-primary:hover {
+  background-color: rgb(63, 63, 63);
+  color: white;
+}
+
+.btn-secondary {
+  background-color: green;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.btn-secondary:hover {
+  background-color: rgb(36, 148, 36);
+  color: white;
+}
+
+.btn-hero {
+  background-color: white;
+  color: black;
+}
+
+.btn-hero:hover {
+  background-color: rgb(253, 240, 240);
+  color: black;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.margin-bottom {
+  margin-bottom: 6px;
+}
