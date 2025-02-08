@@ -9,7 +9,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="bg-white shadow-md">
+    <div className="">
       <div className="relative flex flex-row justify-between">
         {/* Conditional margin */}
         <div className="p-4 text-2xl">
