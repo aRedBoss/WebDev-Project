@@ -43,7 +43,6 @@ h1 {
   text-align: left; /* Aligns text to the left */
   display: flex;
   flex-direction: column;
-  margin-top: -10%;
   gap: 20px; /* Adds space between elements */
 }
 
