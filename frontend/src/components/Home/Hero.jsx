@@ -1,5 +1,5 @@
 import bgImage from "../../assets/barber-logo.png"; // Make sure the path is correct
-import "./Hero.css"; // Import the CSS file
+import "./Home.css"; // Import the CSS file
 
 const Hero = () => {
   return (

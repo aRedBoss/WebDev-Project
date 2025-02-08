@@ -1,5 +1,10 @@
+/* Basic styles */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
 h1 {
-  /* font-family: "Courier New", Courier, monospace; */
   font-size: 5.5rem;
   font-weight: 700;
   margin-bottom: -1rem;
@@ -56,4 +61,34 @@ h1 {
 .btn-secondary {
   background-color: green;
   color: white;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .hero-container {
+    padding-left: 5%; /* Adjust padding for smaller screens */
+  }
+
+  .hero-content {
+    max-width: 100%; /* Full width for smaller screens */
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 3rem; /* Adjust font size for smaller screens */
+  }
+
+  h2 {
+    font-size: 2rem; /* Adjust font size for smaller screens */
+  }
+
+  .hero-buttons {
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 10px; /* Adjust gap between buttons */
+  }
+
+  .hero-buttons button {
+    width: 100%; /* Full width buttons on mobile */
+    padding: 12px; /* Adjust padding for smaller screens */
+  }
 }
