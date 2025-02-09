@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Button from "../../components/Button/Button";
-import "./Contact.css";
+import Button from "../../components/button/Button";
+import "./ContactForm.css";
 
 function ContactForm() {
   const [name, setName] = useState("");
@@ -64,7 +64,8 @@ function ContactForm() {
         <div className="mb-6">
           <label
             htmlFor="message"
-            className="block text-gray-700 font-bold mb-2">
+            className="block text-gray-700 font-bold mb-2"
+          >
             Message
           </label>
           <textarea
@@ -74,7 +75,8 @@ function ContactForm() {
             className=""
             placeholder="Message"
             rows="4"
-            required></textarea>
+            required
+          ></textarea>
         </div>
         {/* <button type="submit" className="">
           SUBMIT

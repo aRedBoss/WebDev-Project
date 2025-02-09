@@ -1,4 +1,4 @@
-import "./Contact.css";
+import "./ContactInfo.css";
 
 function ContactInfo() {
   const hours = [

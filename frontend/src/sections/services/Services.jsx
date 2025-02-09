@@ -1,4 +1,4 @@
-import ServiceCard from "./ServiceCard";
+import ServiceCard from "../../components/service-card/ServiceCard";
 import "./Services.css"; // Ensure styles are applied
 
 import haircutImg from "../../assets/haircut.jpg";
