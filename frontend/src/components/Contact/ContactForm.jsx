@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Button from "../../components/Button/Button";
 import "./Contact.css";
 
 function ContactForm() {
@@ -14,13 +15,13 @@ function ContactForm() {
   };
 
   return (
-    <div className="bg-white">
-      <h2 className="text-xl font-bold mb-4 text-emerald-700">GET IN TOUCH</h2>
-      <h3 className="text-gray-600 text-2xl mb-6">We're here to assist you!</h3>
+    <div className="contact-form">
+      <h2 className="">GET IN TOUCH</h2>
+      <h3 className="">We're here to assist you!</h3>
 
       <form onSubmit={handleSubmit}>
-        <div className="mb-4">
-          <label htmlFor="name" className="block text-gray-700 font-bold mb-2">
+        <div className="">
+          <label htmlFor="name" className="">
             Name
           </label>
           <input
@@ -28,13 +29,13 @@ function ContactForm() {
             id="name"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
+            className=""
             placeholder="Name"
             required
           />
         </div>
-        <div className="mb-4">
-          <label htmlFor="email" className="block text-gray-700 font-bold mb-2">
+        <div className="">
+          <label htmlFor="email" className="">
             Email address
           </label>
           <input
@@ -42,7 +43,7 @@ function ContactForm() {
             id="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
+            className=""
             placeholder="Email address"
             required
           />
@@ -63,26 +64,22 @@ function ContactForm() {
         <div className="mb-6">
           <label
             htmlFor="message"
-            className="block text-gray-700 font-bold mb-2"
-          >
+            className="block text-gray-700 font-bold mb-2">
             Message
           </label>
           <textarea
             id="message"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
+            className=""
             placeholder="Message"
             rows="4"
-            required
-          ></textarea>
+            required></textarea>
         </div>
-        <button
-          type="submit"
-          className="w-full bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:ring-green-300"
-        >
+        {/* <button type="submit" className="">
           SUBMIT
-        </button>
+        </button> */}
+        <Button type="submit" className="btn-secondary" name="SUBMIT" />
       </form>
     </div>
   );

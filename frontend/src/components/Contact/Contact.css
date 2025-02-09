@@ -1,24 +1,144 @@
-p {
-    font-size: 1rem;
-}
-
+/* Contact Page Container */
 .contact-container {
-    background-color: #333333;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
-.hours-table {
-    height: 70%;
+/* Contact Form Styles */
+.contact-form {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.contact-form h2 {
+  font-size: 24px;
+  color: #2d6a4f;
+  margin-bottom: 10px;
+}
+
+.contact-form h3 {
+  font-size: 18px;
+  color: #6b7280;
+  margin-bottom: 20px;
+}
+
+.contact-form label {
+  font-weight: bold;
+  color: #4a4a4a;
+  margin-bottom: 2px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.contact-form button {
+  width: 100%;
+  /* background-color: #2d6a4f; */
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Contact Info Styles */
+.contact-info {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.contact-info h2 {
+  font-size: 24px;
+  color: #374151;
+  margin-bottom: 10px;
+}
+
+.contact-info-label {
+  font-weight: bold;
+  margin-bottom: 2px;
+}
+
+.contact-info p {
+  font-size: 16px;
+  color: #374151;
+}
+
+.contact-info a {
+  color: #1e40af;
+  text-decoration: none;
+  padding-bottom: 10px;
+}
+
+.contact-info a:hover {
+  text-decoration: underline;
+}
+
+.location {
+  margin-top: 10px;
+}
+
+.contact-info table {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.contact-info td {
+  padding: 8px 0;
+}
+
+@media (min-width: 1080px) {
+  .contact-container {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .contact-form,
+  .contact-info {
+    width: 100%;
+  }
 }
 
 @media (min-width: 768px) {
-    .contact-container > * {
-        flex: 1;
-        max-width: 50%;
-    }
+  .contact-container {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .contact-form,
+  .contact-info {
+    width: 70%;
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-form,
+  .contact-info {
+    width: 70%;
+  }
+}
+
+@media (max-width: 568px) {
+  .contact-form,
+  .contact-info {
+    width: 90%;
+  }
 }
