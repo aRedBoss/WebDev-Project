@@ -1,4 +1,4 @@
-// import "./Contact.css";
+import "./Contact.css";
 
 function ContactInfo() {
   const hours = [
@@ -12,31 +12,26 @@ function ContactInfo() {
   ];
 
   return (
-    <div className="">
+    <div className="contact-info">
       <div className="">
         {/* Contact Info */}
-        <div className="bg-white">
-          <h2 className="text-3xl font-bold text-gray-800 mb-4">
-            Contact Info
-          </h2>
-          <p className="text-lg font-bold text-gray-800">Email:</p>
-          <a
-            href="mailto:ahmedmslawi@gmail.com"
-            className="text-blue-500 hover:underline block mb-4"
-          >
+        <div className="">
+          <h2 className="">Contact Info</h2>
+          <p className="contact-info-label">Email:</p>
+          <a href="mailto:ahmedmslawi@gmail.com" className="link">
             ahmedmslawi@gmail.com
           </a>
 
-          <p className="text-lg font-bold text-gray-800">Location:</p>
-          <p className="text-gray-600 mb-4">Helsinki, 18 FI</p>
+          <p className="contact-info-label location">Location:</p>
+          <p>Helsinki, 18 FI</p>
 
-          <p className="text-lg font-bold text-gray-800">Hours:</p>
-          <table className="w-full mt-2">
+          <p className="contact-info-label">Hours:</p>
+          <table>
             <tbody>
               {hours.map((item, index) => (
-                <tr key={index} className="">
-                  <td className="">{item.day}</td>
-                  <td className="py-1 text-right font-medium">{item.time}</td>
+                <tr key={index}>
+                  <td>{item.day}</td>
+                  <td className="text-right">{item.time}</td>
                 </tr>
               ))}
             </tbody>
