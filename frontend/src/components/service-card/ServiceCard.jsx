@@ -1,4 +1,4 @@
-import "./Services.css"; // Apply styles
+import "./ServiceCard.css"; // Apply styles
 
 const ServiceCard = ({ title, description, image }) => {
   return (

@@ -1,18 +1,18 @@
 import "./App.css";
-import Header from "./components/Header/Header.jsx";
-import Home from "./components/Home/Home.jsx";
-import AboutUs from "./components/AboutUs/AboutUs.jsx";
-import Services from "./components/Services/Services.jsx";
-import Contact from "./components/Contact/Contact.jsx";
-import SignIn from "./components/SignIn/SignIn.jsx";
-import Register from "./components/Register/Register.jsx";
+import Header from "./components/header/Header.jsx";
+import Home from "./sections/Home/Home.jsx";
+import About from "./sections/about/About.jsx";
+import Services from "./sections/services/Services.jsx";
+import Contact from "./sections/contact/Contact.jsx";
+import SignIn from "./sections/signin/SignIn.jsx";
+import Register from "./sections/register/Register.jsx";
 
 function App() {
   return (
     <>
       <Header />
       <Home />
-      <AboutUs />
+      <About />
       <Services />
       <Contact />
       <SignIn />

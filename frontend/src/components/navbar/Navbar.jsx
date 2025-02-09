@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Button from "../../components/Button/Button"; // Import Buttons
+import Button from "../button/Button"; // Import Buttons
 import logoImage from "../../assets/barber-logo.png"; // Make sure the path is correct
 import "./Navbar.css"; // Import the CSS file
 
