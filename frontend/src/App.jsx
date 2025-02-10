@@ -6,6 +6,7 @@ import Services from "./sections/services/Services.jsx";
 import Contact from "./sections/contact/Contact.jsx";
 import SignIn from "./sections/signin/SignIn.jsx";
 import Register from "./sections/register/Register.jsx";
+import Footer from "./components/footer/Footer.jsx";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <Contact />
       <SignIn />
       <Register />
+      <Footer />
     </>
   );
 }
