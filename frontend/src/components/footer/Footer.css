@@ -1,34 +1,37 @@
 .footer {
-    background-color: #3B6161E5;
-    color: white;
-    text-align: center;
-    padding: 15px 50px;
-    display: flex;
-    flex-direction: row ;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-    height: 80px;
+  background-color: #3b6161e5;
+  color: white;
+  text-align: center;
+  padding: 15px 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  height: 80px;
 }
 
 .copyright {
-    font-size: 14px;
-    margin: 0;
-    color: white;
+  font-size: 14px;
+  margin: 0;
+  color: white;
 }
 
 .social-links {
-    display: flex;
-    gap: 15px;
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
 }
 
 .social-link {
-    color: white;
-    text-decoration: none;
-    font-size: 14px;
-    transition: color 0.3s ease;
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.3s ease;
 }
 
 .social-link:hover {
-    color: #FFD700;
+  color: #e8f2e8;
+  cursor: pointer;
+  text-decoration: underline;
 }
