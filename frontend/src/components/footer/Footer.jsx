@@ -1,5 +1,6 @@
 import React from "react";
-import "./Footer.css"; // Import the CSS file
+import "./Footer.css";
+import SocialLinks from "./SocialLinks.jsx"; // Import the CSS file
 
 const Footer = () => {
   return (
@@ -8,15 +9,7 @@ const Footer = () => {
         &copy; {new Date().getFullYear()} Musa Barber Shop.
       </p>
       <div className="social-links">
-        <a href="#" className="social-link">
-          Facebook
-        </a>
-        <a href="#" className="social-link">
-          Twitter
-        </a>
-        <a href="#" className="social-link">
-          Instagram
-        </a>
+        <SocialLinks />
       </div>
     </footer>
   );
