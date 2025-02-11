@@ -7,6 +7,7 @@ import Contact from "./sections/contact/Contact.jsx";
 import SignIn from "./sections/signin/SignIn.jsx";
 import Register from "./sections/register/Register.jsx";
 import Footer from "./components/footer/Footer.jsx";
+import Booking from "./components/booking/Booking.jsx";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <About />
       <Services />
       <Contact />
+      <Booking />
       <SignIn />
       <Register />
       <Footer />
