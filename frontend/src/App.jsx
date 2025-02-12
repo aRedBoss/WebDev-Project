@@ -8,6 +8,7 @@ import SignIn from "./sections/signin/SignIn.jsx";
 import Register from "./sections/register/Register.jsx";
 import Footer from "./components/footer/Footer.jsx";
 import Booking from "./components/booking/Booking.jsx";
+import Shop from "./components/shop/Shop";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Home />
       <About />
       <Services />
+      <Shop />
       <Contact />
       <Booking />
       <SignIn />
