@@ -21,7 +21,9 @@
 */
 
 const Booking = require('../models/bookingModel');
-const moment = require('moment-timezone'); 
+const moment = require('moment-timezone');
+const mongoose = require('mongoose');
+
 
 const getAllBookings = async (req, res) => {
   try {
@@ -56,7 +58,7 @@ const createBooking = async (req, res) => {
     return res.status(400).json({ message: 'The booking time must be between 9 AM and 6 PM. Thank you!' });
   }
 
-  const minBookingDuration = 45 * 60 * 1000; 
+  const minBookingDuration = 45 * 60 * 1000;
   const existingBookings = await Booking.find({ barberName: barberName }).sort({ bookingTime: 1 });
 
   for (let i = 0; i < existingBookings.length; i++) {
@@ -94,6 +96,9 @@ const createBooking = async (req, res) => {
 
 const getBookingById = async (req, res) => {
   const { bookingId } = req.params;
+  if (!mongoose.Types.ObjectId.isValid(bookingId)) {
+    return res.status(400).json({ message: "Invalid booking ID" });
+  }
 
   try {
     const booking = await Booking.findById(bookingId);
@@ -108,15 +113,17 @@ const getBookingById = async (req, res) => {
 
 const updateBooking = async (req, res) => {
   const { bookingId } = req.params;
-  const { status } = req.body;
+
+  if (!mongoose.Types.ObjectId.isValid(bookingId)) {
+    return res.status(400).json({ message: "Invalid booking ID" });
+  }
 
   try {
     const updatedBooking = await Booking.findByIdAndUpdate(
       bookingId,
-      { status },
+      { ...req.body },
       { new: true }
     );
-
     if (!updatedBooking) {
       return res.status(404).json({ message: 'Booking not found' });
     }
@@ -130,6 +137,9 @@ const updateBooking = async (req, res) => {
 
 const deleteBooking = async (req, res) => {
   const { bookingId } = req.params;
+  if (!mongoose.Types.ObjectId.isValid(bookingId)) {
+    return res.status(400).json({ message: "Invalid booking ID" });
+  }
 
   try {
     const deletedBooking = await Booking.findByIdAndDelete(bookingId);
