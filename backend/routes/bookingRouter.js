@@ -4,8 +4,8 @@ const {
   createBooking,
   getBookingById,
   updateBooking,
-  cancelBooking,
-  deleteBooking
+  deleteBooking  
+
 } = require('../controllers/bookingController');
 
 const router = express.Router();
