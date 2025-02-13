@@ -1,18 +1,26 @@
 /* Contact Page Container */
+.bg {
+  margin: 0;
+  padding: 0;
+  background-color: #f3f4f6;
+  height: 100vh;
+}
+
 .contact-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  padding: 20px;
   max-width: 1000px;
   margin: 0 auto;
+  padding: 5rem;
+  background-color: #f3f4f6;
 }
 
 /* Contact Form Styles */
 .contact-form {
   background-color: white;
-  padding: 20px;
+  /*padding: 20px;*/
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -58,53 +66,6 @@
   transition: background-color 0.3s ease;
 }
 
-/*!* Contact Info Styles *!*/
-/*.contact-info {*/
-/*  background-color: white;*/
-/*  padding: 20px;*/
-/*  border-radius: 8px;*/
-/*  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);*/
-/*}*/
-
-/*.contact-info h2 {*/
-/*  font-size: 24px;*/
-/*  color: #374151;*/
-/*  margin-bottom: 10px;*/
-/*}*/
-
-/*.contact-info-label {*/
-/*  font-weight: bold;*/
-/*  margin-bottom: 2px;*/
-/*}*/
-
-/*.contact-info p {*/
-/*  font-size: 16px;*/
-/*  color: #374151;*/
-/*}*/
-
-/*.contact-info a {*/
-/*  color: #1e40af;*/
-/*  text-decoration: none;*/
-/*  padding-bottom: 10px;*/
-/*}*/
-
-/*.contact-info a:hover {*/
-/*  text-decoration: underline;*/
-/*}*/
-
-/*.location {*/
-/*  margin-top: 10px;*/
-/*}*/
-
-/*.contact-info table {*/
-/*  width: 100%;*/
-/*  margin-top: 10px;*/
-/*}*/
-
-/*.contact-info td {*/
-/*  padding: 8px 0;*/
-/*}*/
-
 @media (min-width: 1080px) {
   .contact-container {
     flex-direction: row;
@@ -133,6 +94,7 @@
   .contact-form,
   .contact-info {
     width: 70%;
+    margin: 2rem auto;
   }
 }
 
@@ -140,5 +102,7 @@
   .contact-form,
   .contact-info {
     width: 90%;
+    margin: 0 auto;
   }
 }
+

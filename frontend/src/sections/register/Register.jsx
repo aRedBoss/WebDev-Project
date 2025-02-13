@@ -1,7 +1,9 @@
+import { Link } from "react-router-dom";
 import "./Register.css";
+
 const Register = () => {
   return (
-    <div className="flex items-center justify-center h-screen bg-gray-200 p-6 sm:p-0">
+    <div className="register-container">
       <div className="register bg-white text-black p-8 rounded-lg shadow-md max-w-sm w-full">
         <h2 className="text-3xl font-bold mb-6 text-center">Register</h2>
         <form>
@@ -32,7 +34,8 @@ const Register = () => {
           <div className="mb-4">
             <label
               className="block text-sm font-semibold mb-2"
-              htmlFor="password">
+              htmlFor="password"
+            >
               Password
             </label>
             <input
@@ -46,7 +49,8 @@ const Register = () => {
           <div className="mb-4">
             <label
               className="block text-sm font-semibold mb-2"
-              htmlFor="confirm-password">
+              htmlFor="confirm-password"
+            >
               Confirm Password
             </label>
             <input
@@ -57,22 +61,20 @@ const Register = () => {
               className="w-full px-3 py-2 bg-gray-100 text-black rounded"
             />
           </div>
-          <button
-            type="submit"
-            className="w-full bg-green-500 text-white py-2 rounded hover:bg-green-400 transition duration-200">
+          <button type="submit" className="register-button">
             Register
           </button>
         </form>
-        <p className="mt-4 text-center text-sm">
+        <p className="sign-in-text">
           Already have an account?&nbsp;
-          <a href="#login" className="text-blue-500 hover:underline">
-            Login
-          </a>
+          <Link to="/signin" className="sign-in-link">
+            Sign In
+          </Link>
         </p>
-        <p className="mt-4 text-center text-sm">
-          <a href="#home" className="text-blue-500 hover:underline">
+        <p className="sign-in-text">
+          <Link to="/" className="sign-in-link">
             Go back to home
-          </a>
+          </Link>
         </p>
       </div>
     </div>

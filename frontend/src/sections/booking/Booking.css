@@ -1,11 +1,8 @@
-/* Booking.css */
 .booking-container {
     display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-    min-height: 100vh; /* Ensure full viewport height */
-    background-color: #f4f4f4; /* Light background */
-    padding: 20px;
+    justify-content: center;
+    align-items: center;
+    background-color: #f3f4f6;
 }
 
 .booking-form {
@@ -14,6 +11,7 @@
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     width: 500px; /* Adjust width as needed */
+    margin: 5rem auto;
 }
 
 .booking-form h2 {
@@ -44,6 +42,7 @@ select {
     border-radius: 5px;
     cursor: pointer;
     width: 100%; /* Make button full width */
+    margin-bottom: 20px;
 }
 
 .btn-book:hover {
@@ -51,8 +50,9 @@ select {
 }
 
 /* Responsive design (example) */
-@media (max-width: 400px) {
+@media (max-width: 768px) {
+
     .booking-form {
-        width: 90%;
+        margin: 0 10px; /* Add margin to sides */
     }
 }

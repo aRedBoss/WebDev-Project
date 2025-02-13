@@ -1,3 +1,41 @@
-.register p {
-  font-size: 0.9rem;
+.register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f3f4f6;
+}
+
+.register-button {
+  width: 100%;
+  padding: 10px;
+  background-color: green;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 12px;
+}
+
+.register-button:hover {
+  background-color: rgb(36, 148, 36);
+}
+
+/* Register text */
+.sign-in-text {
+  margin-top: 12px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.sign-in-link {
+  font-size: 14px;
+  color: #3b82f6;
+  text-decoration: none;
+  text-align: center;
+}
+
+.sign-in-link:hover {
+  text-decoration: underline;
 }
