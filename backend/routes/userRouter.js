@@ -18,7 +18,7 @@ router.post('/', createUser)
 router.get('/:userId', getUserById)
 
 // PUT /users/:userId
-router.put('/:userId', updateUser)
+router.patch('/:userId', updateUser)
 
 // DELETE /users/:userId
 router.delete('/:userId', deleteUser)
