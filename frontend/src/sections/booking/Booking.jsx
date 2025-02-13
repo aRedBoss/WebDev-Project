@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./Booking.css";
 
 const Booking = () => {
@@ -46,8 +46,7 @@ const Booking = () => {
               id="service"
               name="service"
               value={formData.serviceType}
-              onChange={handleChange}
-            >
+              onChange={handleChange}>
               <option value="haircut">Classic haircut</option>
               <option value="shave">Beard grooming</option>
               <option value="hairandshave">Hot towel shave</option>
@@ -99,8 +98,7 @@ const Booking = () => {
               id="time"
               name="time"
               value={formData.bookingTime}
-              onChange={handleChange}
-            >
+              onChange={handleChange}>
               <option value="9:00">9:00</option>
               <option value="9:45">9:45</option>
               <option value="10:30">10:30</option>

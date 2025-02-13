@@ -1,9 +1,9 @@
 .register-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f3f4f6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f3f4f6;
 }
 
 .register-button {
@@ -38,4 +38,11 @@
 
 .sign-in-link:hover {
   text-decoration: underline;
+}
+
+/* Responsive design (example) */
+@media (max-width: 768px) {
+  .register {
+    margin: 5rem 20px; /* Add margin to sides */
+  }
 }

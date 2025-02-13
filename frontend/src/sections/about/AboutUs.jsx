@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import barbershop from "../../assets/barbershop.jpg";
 import "./AboutUs.css";
 
@@ -29,7 +30,9 @@ const AboutUs = () => {
           here to provide an unmatched barbering experience. Book your
           appointment today and step out with confidence!
         </p>
-        <button className="read-more">READ MORE</button>
+        <Link to="/booking">
+          <button className="read-more">BOOK NOW</button>
+        </Link>
       </div>
     </section>
   );

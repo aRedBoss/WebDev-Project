@@ -3,7 +3,6 @@
   margin: 0;
   padding: 0;
   background-color: #f3f4f6;
-  height: 100vh;
 }
 
 .contact-container {
@@ -81,7 +80,6 @@
 @media (min-width: 768px) {
   .contact-container {
     flex-direction: row;
-    justify-content: space-between;
   }
 
   .contact-form,
@@ -90,7 +88,11 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 769px) {
+  .contact-container {
+    flex-direction: column;
+  }
+
   .contact-form,
   .contact-info {
     width: 70%;
@@ -99,10 +101,12 @@
 }
 
 @media (max-width: 568px) {
+  .contact-container {
+    padding: 1rem;
+  }
+
   .contact-form,
   .contact-info {
     width: 90%;
-    margin: 0 auto;
   }
 }
-
