@@ -1,7 +1,8 @@
 import { useState } from "react";
-import Button from "../button/Button"; // Import Buttons
-import logoImage from "../../assets/barber-logo.png"; // Make sure the path is correct
-import "./Navbar.css"; // Import the CSS file
+import { Link } from "react-router-dom"; // Import Link for routing
+import Button from "../button/Button";
+import logoImage from "../../assets/barber-logo.png";
+import "./Navbar.css";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -13,38 +14,51 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="logo">
-        <img src={logoImage} alt="Logo" />
+        <Link to="/">
+          <img src={logoImage} alt="Logo" />
+        </Link>
       </div>
       <div className="menu">
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#contact">Contact</a>
+        <Link to="/">Home</Link>
+        <Link to="/about">About</Link>
+        <Link to="/services">Services</Link>
+        <Link to="/contact">Contact</Link>
       </div>
       <div className="buttons">
-        <Button className="btn-primary" name="Sign In" />
-        <Button className="btn-secondary" name="Book" />
+        <Link to="/signin">
+          <Button className="btn-primary" name="Sign In" />
+        </Link>
+        <Link to="/booking">
+          <Button className="btn-secondary" name="Book" />
+        </Link>
       </div>
       <div className="hamburger" onClick={toggleMobileMenu}>
         ☰
       </div>
       {isMobileMenuOpen && (
         <div className="mobile-menu">
-          <a href="#home" onClick={toggleMobileMenu}>
+          <Link to="/" onClick={toggleMobileMenu}>
             Home
-          </a>
-          <a href="#about" onClick={toggleMobileMenu}>
+          </Link>
+          <Link to="/about" onClick={toggleMobileMenu}>
             About
-          </a>
-          <a href="#services" onClick={toggleMobileMenu}>
+          </Link>
+          <Link to="/services" onClick={toggleMobileMenu}>
             Services
-          </a>
-          <a href="#contact" onClick={toggleMobileMenu}>
+          </Link>
+          <Link to="/contact" onClick={toggleMobileMenu}>
             Contact
-          </a>
+          </Link>
           {/* Reuse Buttons Component in Mobile Menu */}
-          <Button className="btn-primary margin-bottom w-full" name="Sign In" />
-          <Button className="btn-secondary w-full" name="Book" />
+          <Link to="/signin">
+            <Button
+              className="btn-primary margin-bottom w-full"
+              name="Sign In"
+            />
+          </Link>
+          <Link to="/booking">
+            <Button className="btn-secondary w-full" name="Book" />
+          </Link>
         </div>
       )}
     </nav>

@@ -1,4 +1,8 @@
 /* Services Section */
+body {
+  height: 100vh;
+}
+
 .services {
   max-width: 1200px;
   margin: 5rem auto;
