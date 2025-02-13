@@ -1,7 +1,7 @@
 import barbershop from "../../assets/barbershop.jpg";
-import "./About.css";
+import "./AboutUs.css";
 
-const About = () => {
+const AboutUs = () => {
   return (
     <section className="about-container">
       <div className="about-image">
@@ -35,4 +35,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default AboutUs;

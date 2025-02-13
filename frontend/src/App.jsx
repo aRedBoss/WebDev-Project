@@ -2,7 +2,7 @@ import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/header/Header.jsx";
 import Home from "./sections/Home/Home.jsx";
-import About from "./sections/about/About.jsx";
+import AboutUs from "./sections/about/AboutUs.jsx";
 import Services from "./sections/services/Services.jsx";
 import Contact from "./sections/contact/Contact.jsx";
 import SignIn from "./sections/signin/SignIn.jsx";
@@ -19,7 +19,7 @@ function App() {
         <main className="main-content">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
+            <Route path="/aboutus" element={<AboutUs />} />
             <Route path="/services" element={<Services />} />
             <Route path="/shop" element={<Shop />} />
             <Route path="/contact" element={<Contact />} />
