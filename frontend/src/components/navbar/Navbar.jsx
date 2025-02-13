@@ -52,14 +52,11 @@ const Navbar = () => {
             Contact
           </Link>
           {/* Reuse Buttons Component in Mobile Menu */}
-          <Link to="/signin">
-            <Button
-              className="btn-primary margin-bottom w-full"
-              name="Sign In"
-            />
+          <Link to="/signin" className="btn-primary">
+            Sign In
           </Link>
-          <Link to="/booking">
-            <Button className="btn-secondary w-full" name="Book" />
+          <Link to="/booking" className="btn-secondary">
+            Book
           </Link>
         </div>
       )}
