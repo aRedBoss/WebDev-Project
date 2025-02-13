@@ -2,8 +2,8 @@
 {
   "clientName": "Musa sadi1 Musa",  
   "serviceType": "Haircut",  
-  "email": "ahmed.ali@example.com",  
-  "phoneNumber": "9876543210",  
+  "email": "ahmed.ali@example.com",   // This should be Unique 
+  "phoneNumber": "9876543210",  // This should be Unique also 
   "barberName": "Mohamed",  // Can be left empty if no specific barber, 4ex "" , 
   "bookingTime": "2025-02-12T10:45:00.000+02:00",  // Make sure the time format is correct: "YYYY-MM-DDTHH:mm:ss.sssZ" // Time is local
   "status": "pending",  
@@ -39,14 +39,12 @@ const createBooking = async (req, res) => {
     return res.status(400).json({ message: 'Client name, email, phone number, and booking time are required. Thank you!' });
   }
 
-
+///////////////////// Booking Time code 
   const bookingDate = moment.tz(bookingTime, "Europe/Helsinki").toDate();
-
   const startOfWorkDay = new Date(bookingDate);
   startOfWorkDay.setHours(9, 0, 0, 0);
   const endOfWorkDay = new Date(bookingDate);
   endOfWorkDay.setHours(18, 0, 0, 0);
-
 
   const currentDate = new Date();
   if (bookingDate < currentDate) {
@@ -91,6 +89,8 @@ const createBooking = async (req, res) => {
     res.status(500).json({ message: 'Error creating booking', error: error.message });
   }
 };
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 const getBookingById = async (req, res) => {
   const { bookingId } = req.params;
@@ -127,6 +127,7 @@ const updateBooking = async (req, res) => {
   }
 };
 
+
 const deleteBooking = async (req, res) => {
   const { bookingId } = req.params;
 
@@ -142,6 +143,7 @@ const deleteBooking = async (req, res) => {
     res.status(500).json({ message: 'Error deleting booking', error: error.message });
   }
 };
+
 
 module.exports = {
   getAllBookings,
