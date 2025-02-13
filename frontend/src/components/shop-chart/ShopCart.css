@@ -2,7 +2,7 @@
 .shop-cart {
   width: 80%;
   max-width: 1000px; /* Prevents excessive stretching */
-  margin: 40px auto; /* Adds space between shop and cart */
+  margin: 50px auto; /* Adds space between shop and cart */
   font-family: Arial, sans-serif;
 }
 

@@ -1,18 +1,26 @@
 /* Contact Page Container */
+.bg {
+  margin: 0;
+  padding: 0;
+  background-color: #f3f4f6;
+  height: 100vh;
+}
+
 .contact-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  padding: 20px;
   max-width: 1000px;
-  margin: 5rem auto;
+  margin: 0 auto;
+  padding: 5rem;
+  background-color: #f3f4f6;
 }
 
 /* Contact Form Styles */
 .contact-form {
   background-color: white;
-  padding: 20px;
+  /*padding: 20px;*/
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
