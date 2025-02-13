@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import "./Register.css";
+
 const Register = () => {
   return (
-    <div className="flex items-center justify-center h-screen bg-gray-200 p-6 sm:p-0">
+    <div className="register-container">
       <div className="register bg-white text-black p-8 rounded-lg shadow-md max-w-sm w-full">
         <h2 className="text-3xl font-bold mb-6 text-center">Register</h2>
         <form>
@@ -60,21 +61,18 @@ const Register = () => {
               className="w-full px-3 py-2 bg-gray-100 text-black rounded"
             />
           </div>
-          <button
-            type="submit"
-            className="w-full bg-green-500 text-white py-2 rounded hover:bg-green-400 transition duration-200"
-          >
+          <button type="submit" className="register-button">
             Register
           </button>
         </form>
-        <p className="mt-4 text-center text-sm">
+        <p className="sign-in-text">
           Already have an account?&nbsp;
-          <Link to="/signin" className="text-blue-500 hover:underline">
+          <Link to="/signin" className="sign-in-link">
             Sign In
           </Link>
         </p>
-        <p className="mt-4 text-center text-sm">
-          <Link to="/" className="text-blue-500 hover:underline">
+        <p className="sign-in-text">
+          <Link to="/" className="sign-in-link">
             Go back to home
           </Link>
         </p>

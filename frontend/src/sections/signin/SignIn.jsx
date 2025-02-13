@@ -13,43 +13,44 @@ const SignIn = () => {
   };
 
   return (
-    <div className="signin-container">
-      <h2>Sign In</h2>
-      <form onSubmit={handleSubmit}>
-        <label>Email</label>
-        <input
-          type="email"
-          placeholder="username@gmail.com"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
+    <section className="sign-in-container">
+      <section className="sign-in">
+        <h2>Sign In</h2>
+        <form onSubmit={handleSubmit}>
+          <label>Email</label>
+          <input
+            type="email"
+            placeholder="username@gmail.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <label>Password</label>
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
 
-        <label>Password</label>
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
+          <Link to="/forgot-password" className="forgot-password">
+            Forgot Password?
+          </Link>
 
-        <Link to="/forgot-password" className="forgot-password">
-          Forgot Password?
-        </Link>
+          <button type="submit" className="signin-button">
+            Sign In
+          </button>
+        </form>
 
-        <button type="submit" className="signin-button">
-          Sign In
-        </button>
-      </form>
-
-      <p className="register-text">
-        Don't have an account yet?{" "}
-        <Link to="/register">
-          <span className="register-link">Register for free</span>
-        </Link>
-      </p>
-    </div>
+        <p className="register-text">
+          Don't have an account yet?{" "}
+          <Link to="/register">
+            <span className="register-link">Register for free</span>
+          </Link>
+        </p>
+      </section>
+    </section>
   );
 };
 

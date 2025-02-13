@@ -36,6 +36,7 @@ h1 {
 
 /* Center content but align text to the left */
 .hero-content {
+  margin-top: -50px;
   position: relative;
   width: 1000px;
   color: white;

@@ -25,7 +25,7 @@ const Booking = () => {
   };
 
   return (
-    <div className="booking-section">
+    <div className="booking-container">
       <div className="booking-form">
         <h2>Booking</h2>
         {!isSubmitted ? (
