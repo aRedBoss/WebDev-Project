@@ -35,3 +35,10 @@
   cursor: pointer;
   text-decoration: underline;
 }
+
+@media screen and (max-width: 568px) {
+  .footer {
+    flex-direction: column;
+    height: auto;
+  }
+}
