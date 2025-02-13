@@ -1,7 +1,7 @@
 import { useState } from "react";
-import Button from "../button/Button"; // Import Buttons
-import logoImage from "../../assets/barber-logo.png"; // Make sure the path is correct
-import "./Navbar.css"; // Import the CSS file
+import Button from "../button/Button"; // Import Button Component
+import logoImage from "../../assets/barber-logo.png"; // Ensure this path is correct
+import "./Navbar.css"; // Import CSS file
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -19,6 +19,7 @@ const Navbar = () => {
         <a href="#home">Home</a>
         <a href="#about">About</a>
         <a href="#services">Services</a>
+        <a href="#shop">Shop</a> {/* Added Shop Section */}
         <a href="#contact">Contact</a>
       </div>
       <div className="buttons">
@@ -39,10 +40,13 @@ const Navbar = () => {
           <a href="#services" onClick={toggleMobileMenu}>
             Services
           </a>
+          <a href="#shop" onClick={toggleMobileMenu}>
+            Shop
+          </a> {/* Added Shop Section in Mobile Menu */}
           <a href="#contact" onClick={toggleMobileMenu}>
             Contact
           </a>
-          {/* Reuse Buttons Component in Mobile Menu */}
+          {/* Reuse Button Component in Mobile Menu */}
           <Button className="btn-primary margin-bottom w-full" name="Sign In" />
           <Button className="btn-secondary w-full" name="Book" />
         </div>

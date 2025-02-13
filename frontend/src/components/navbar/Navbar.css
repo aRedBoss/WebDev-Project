@@ -29,8 +29,14 @@ body {
   text-decoration: none;
   color: black;
   font-weight: bold;
+  transition: color 0.3s ease;
 }
 
+.menu a:hover {
+  color: #28a745; /* Green hover effect */
+}
+
+/* Buttons */
 .buttons {
   display: flex;
   gap: 10px;
