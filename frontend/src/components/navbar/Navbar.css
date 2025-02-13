@@ -17,6 +17,8 @@
 .logo img {
     height: 50px;
     margin-left: 30px;
+    transition: transform 0.3s ease;
+    margin-right: 100px;
 }
 
 .logo img:hover {

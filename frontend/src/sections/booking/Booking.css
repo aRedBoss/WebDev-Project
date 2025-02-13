@@ -6,13 +6,6 @@
     background-color: #f3f4f6;
 }
 
-.booking-section {
-    /*display: flex;*/
-    /*justify-content: center; !* Center horizontally *!*/
-    /*align-items: center; !* Center vertically *!*/
-    /*min-height: 100vh; !* Ensure full viewport height *!*/
-}
-
 .booking-form {
     background-color: #fff;
     padding: 30px;
