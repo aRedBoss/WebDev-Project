@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./Register.css";
 const Register = () => {
   return (
@@ -32,7 +33,8 @@ const Register = () => {
           <div className="mb-4">
             <label
               className="block text-sm font-semibold mb-2"
-              htmlFor="password">
+              htmlFor="password"
+            >
               Password
             </label>
             <input
@@ -46,7 +48,8 @@ const Register = () => {
           <div className="mb-4">
             <label
               className="block text-sm font-semibold mb-2"
-              htmlFor="confirm-password">
+              htmlFor="confirm-password"
+            >
               Confirm Password
             </label>
             <input
@@ -59,20 +62,21 @@ const Register = () => {
           </div>
           <button
             type="submit"
-            className="w-full bg-green-500 text-white py-2 rounded hover:bg-green-400 transition duration-200">
+            className="w-full bg-green-500 text-white py-2 rounded hover:bg-green-400 transition duration-200"
+          >
             Register
           </button>
         </form>
         <p className="mt-4 text-center text-sm">
           Already have an account?&nbsp;
-          <a href="#login" className="text-blue-500 hover:underline">
-            Login
-          </a>
+          <Link to="/signin" className="text-blue-500 hover:underline">
+            Sign In
+          </Link>
         </p>
         <p className="mt-4 text-center text-sm">
-          <a href="#home" className="text-blue-500 hover:underline">
+          <Link to="/" className="text-blue-500 hover:underline">
             Go back to home
-          </a>
+          </Link>
         </p>
       </div>
     </div>

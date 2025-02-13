@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Slider from "react-slick";
-import ShopCart from "./ShopCart";
+import ShopCart from "../../components/shop-chart/ShopCart.jsx";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./Shop.css"; // Import CSS
@@ -11,27 +11,51 @@ import clippers from "../../assets/hair-clippers-trimmers.jpg";
 import cologne from "../../assets/mens-cologne-selection.jpg";
 import beardoil from "../../assets/organic-beard-oils.jpg";
 
- 
-
-
 const Shop = () => {
   const [cart, setCart] = useState([]);
 
   const products = [
-    { name: "Premium Hair Styling Gel", image: premiumGel, description: "Strong hold styling gel for a sleek look.", price: "€15" },
-    { name: "Beard Grooming Kit", image: beardKit, description: "Complete set for beard maintenance and care.", price: "€25" },
-    { name: "Luxury Shaving Cream", image: shavingCream, description: "Smooth shaving experience with hydration.", price: "€12" },
-    { name: "Hair Clippers and Trimmers", image: clippers, description: "Professional quality clippers for precise cuts.", price: "€50" },
-    { name: "Men's Cologne Selection", image: cologne, description: "Handpicked premium cologne for every occasion.", price: "€35" },
-    { name: "Organic Beard Oils", image: beardoil, description: "Natural beard oil for soft and healthy hair.", price: "€18" },
+    {
+      name: "Premium Hair Styling Gel",
+      image: premiumGel,
+      description: "Strong hold styling gel for a sleek look.",
+      price: "€15",
+    },
+    {
+      name: "Beard Grooming Kit",
+      image: beardKit,
+      description: "Complete set for beard maintenance and care.",
+      price: "€25",
+    },
+    {
+      name: "Luxury Shaving Cream",
+      image: shavingCream,
+      description: "Smooth shaving experience with hydration.",
+      price: "€12",
+    },
+    {
+      name: "Hair Clippers and Trimmers",
+      image: clippers,
+      description: "Professional quality clippers for precise cuts.",
+      price: "€50",
+    },
+    {
+      name: "Men's Cologne Selection",
+      image: cologne,
+      description: "Handpicked premium cologne for every occasion.",
+      price: "€35",
+    },
+    {
+      name: "Organic Beard Oils",
+      image: beardoil,
+      description: "Natural beard oil for soft and healthy hair.",
+      price: "€18",
+    },
   ];
-  
 
-   
   const addToCart = (product) => {
-    setCart([...cart, { ...product, quantity: 1 }]); 
+    setCart([...cart, { ...product, quantity: 1 }]);
   };
-  
 
   // Slider settings for infinite loop
   const sliderSettings = {
@@ -49,17 +73,17 @@ const Shop = () => {
         breakpoint: 1024,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 1
-        }
+          slidesToScroll: 1,
+        },
       },
       {
         breakpoint: 768,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1
-        }
-      }
-    ]
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   return (
@@ -71,7 +95,11 @@ const Shop = () => {
         <Slider {...sliderSettings}>
           {products.map((product, index) => (
             <div key={index} className="shop-card">
-              <img src={product.image} alt={product.name} className="shop-image" />
+              <img
+                src={product.image}
+                alt={product.name}
+                className="shop-image"
+              />
               <div className="shop-info">
                 <h3 className="shop-title">{product.name}</h3>
                 <p className="shop-description">{product.description}</p>

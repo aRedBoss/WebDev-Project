@@ -4,10 +4,10 @@ import "./Contact.css";
 
 function ContactPage() {
   return (
-    <div className="contact-container">
+    <section className="contact-container">
       <ContactForm />
       <ContactInfo />
-    </div>
+    </section>
   );
 }
 

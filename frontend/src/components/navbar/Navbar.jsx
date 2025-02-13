@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom"; // Import Link
 import Button from "../button/Button"; // Import Buttons
 import logoImage from "../../assets/barber-logo.png"; // Make sure the path is correct
 import "./Navbar.css"; // Import the CSS file
@@ -12,9 +13,9 @@ const Navbar = () => {
 
   return (
     <nav className="navbar">
-      <div className="logo">
+      <Link to="/" className="logo">
         <img src={logoImage} alt="Logo" />
-      </div>
+      </Link>
       <div className="menu">
         <Link to="/">Home</Link>
         <Link to="/about">About</Link>
@@ -43,11 +44,9 @@ const Navbar = () => {
           </Link>
           <Link to="/services" onClick={toggleMobileMenu}>
             Services
-          </a>
-          <a href="/shop" onClick={toggleMobileMenu}>
+          </Link>
+          <Link to="/shop" onClick={toggleMobileMenu}>
             Shop
-          </a> {/* Added Shop Section in Mobile Menu */}
-          <a href="/contact" onClick={toggleMobileMenu}>
           </Link>
           <Link to="/contact" onClick={toggleMobileMenu}>
             Contact
