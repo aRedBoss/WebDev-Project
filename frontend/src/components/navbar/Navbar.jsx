@@ -39,7 +39,7 @@ const Navbar = () => {
           <Link to="/" onClick={toggleMobileMenu}>
             Home
           </Link>
-          <Link to="/about" onClick={toggleMobileMenu}>
+          <Link to="/aboutus" onClick={toggleMobileMenu}>
             About
           </Link>
           <Link to="/services" onClick={toggleMobileMenu}>
