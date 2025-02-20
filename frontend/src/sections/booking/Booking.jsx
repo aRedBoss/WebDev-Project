@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios";
 import "./Booking.css";
 
 const Booking = () => {
@@ -13,15 +14,32 @@ const Booking = () => {
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState("");
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.clientName]: e.target.value });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitted(true);
-    console.log("Booking data submitted:", formData);
+
+    const bookingData = {
+      clientName: formData.clientName,
+      serviceType: formData.serviceType,
+      email: formData.email,
+      phoneNumber: formData.phoneNumber,
+      barberName: formData.barberName,
+      bookingTime: `${formData.date}T${formData.bookingTime}:00`, // Format the booking time
+    };
+
+    try {
+      const response = await axios.post("http://localhost:4000/api/booking", bookingData);
+      console.log("Booking successful:", response.data);
+    } catch (error) {
+      setError("There was an error with your booking. Please try again.");
+      console.error("Error creating booking:", error);
+    }
   };
 
   return (
@@ -34,7 +52,7 @@ const Booking = () => {
             <input
               type="text"
               id="name"
-              name="name"
+              name="clientName"
               placeholder="Client Name"
               value={formData.clientName}
               onChange={handleChange}
@@ -44,9 +62,10 @@ const Booking = () => {
             <label htmlFor="service">Service:</label>
             <select
               id="service"
-              name="service"
+              name="serviceType"
               value={formData.serviceType}
-              onChange={handleChange}>
+              onChange={handleChange}
+            >
               <option value="haircut">Classic haircut</option>
               <option value="shave">Beard grooming</option>
               <option value="hairandshave">Hot towel shave</option>
@@ -67,13 +86,13 @@ const Booking = () => {
             <input
               type="tel"
               id="phone"
-              name="phone"
+              name="phoneNumber"
               placeholder="Phone number"
               value={formData.phoneNumber}
               onChange={handleChange}
             />
 
-            <label htmlFor="phone">Barber Name:</label>
+            <label htmlFor="barberName">Barber Name:</label>
             <input
               type="text"
               id="barberName"
@@ -96,20 +115,28 @@ const Booking = () => {
             <label htmlFor="time">Time:</label>
             <select
               id="time"
-              name="time"
+              name="bookingTime"
               value={formData.bookingTime}
-              onChange={handleChange}>
-              <option value="9:00">9:00</option>
-              <option value="9:45">9:45</option>
+              onChange={handleChange}
+            >
+              {/* Available booking times from 9:00 AM to 6:00 PM with 30-minute intervals */}
+              <option value="09:00">9:00</option>
+              <option value="09:30">9:30</option>
+              <option value="10:00">10:00</option>
               <option value="10:30">10:30</option>
-              <option value="11:15">11:15</option>
+              <option value="11:00">11:00</option>
+              <option value="11:30">11:30</option>
               <option value="12:00">12:00</option>
-              <option value="12:45">12:45</option>
+              <option value="12:30">12:30</option>
+              <option value="13:00">13:00</option>
               <option value="13:30">13:30</option>
-              <option value="14:15">14:15</option>
+              <option value="14:00">14:00</option>
+              <option value="14:30">14:30</option>
               <option value="15:00">15:00</option>
-              <option value="15:45">15:45</option>
-              <option value="16:15">16:15</option>
+              <option value="15:30">15:30</option>
+              <option value="16:00">16:00</option>
+              <option value="16:30">16:30</option>
+              <option value="17:00">17:00</option>
               <option value="17:30">17:30</option>
             </select>
 
@@ -120,6 +147,8 @@ const Booking = () => {
         ) : (
           <p>Thank you for your booking!</p>
         )}
+
+        {error && <p style={{ color: "red" }}>{error}</p>}
       </div>
     </div>
   );
