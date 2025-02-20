@@ -8,7 +8,7 @@ const bookingSchema = new mongoose.Schema({
   barberName: { type: String, required: false },
   bookingTime: { type: Date, required: true },
   status: { type: String, enum: ['pending', 'confirmed', 'canceled'], default: 'pending' },
-  duration: { type: Number, default: 45 }
+  duration: { type: Number, default: 30}
 },
     {timestamps :true}
 );

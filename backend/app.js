@@ -4,8 +4,12 @@ const BookingRouter = require('./routes/bookingRouter');
 const userRouter = require('./routes/userRouter');
 require('dotenv').config();
 const connectDB = require('./config/db');
+const cors = require('cors');
 
 connectDB();
+
+// تفعيل CORS للسماح للطلبات من متصفح React
+app.use(cors()); // أضف هذا السطر هنا لتفعيل CORS
 
 app.use(express.json());
 
