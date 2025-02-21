@@ -15,6 +15,7 @@ const Booking = require('../models/bookingModel');
 const mongoose = require('mongoose');
 const moment = require('moment-timezone');
 const nodemailer = require('nodemailer');
+require('dotenv').config();
 
 //----------------------------------------------------------------------------------------------
 
@@ -22,7 +23,7 @@ const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
     user: 'alprstigehussein@gmail.com',  
-    pass: 'qdoe gzln kbwg dkfx'          
+    pass: process.env.EMAIl_Pass           
   }
 });
 
