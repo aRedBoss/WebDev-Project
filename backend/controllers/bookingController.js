@@ -1,29 +1,33 @@
 /*
 {
-  "clientName": "Musa sadi1 Musa",  
+  "clientName": "Musa sadiq Musa",  
   "serviceType": "Haircut",  
   "email": "ahmed.ali@example.com",  
   "phoneNumber": "9876543210",  
-  "barberName": "Mohamed",  // Can be left empty if no specific barber, 4ex "" , 
+  "barberName": "Mohamed",   
   "bookingTime": "2025-02-12T10:45:00.000+02:00",  // Make sure the time format is correct: "YYYY-MM-DDTHH:mm:ss.sssZ" // Time is local
   "status": "pending",  
-  "duration": 45 
+  "duration": 30 
 }
 
-// Make sure to install the moment-timezone library if you haven't already , check package.json:
-// npm install moment-timezone
-
-//i will use this library to send Email to clients for confirm the booking
-// npm install nodemailer
-
-// The nodemailer library helps in sending emails to clients, but I will need time to learn how to use it.
-// This Code n't done yet .. 
 */
-
 const Booking = require('../models/bookingModel');
-const moment = require('moment-timezone');
 const mongoose = require('mongoose');
+const moment = require('moment-timezone');
+const nodemailer = require('nodemailer');
+require('dotenv').config();
 
+//----------------------------------------------------------------------------------------------
+
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'alprstigehussein@gmail.com',  
+    pass: process.env.EMAIl_Pass           
+  }
+});
+
+//----------------------------------------------------------------------------------------------
 
 const getAllBookings = async (req, res) => {
   try {
@@ -34,6 +38,8 @@ const getAllBookings = async (req, res) => {
   }
 };
 
+//----------------------------------------------------------------------------------------------
+
 const createBooking = async (req, res) => {
   const { clientName, serviceType, email, phoneNumber, barberName, bookingTime } = req.body;
 
@@ -41,43 +47,44 @@ const createBooking = async (req, res) => {
     return res.status(400).json({ message: 'Client name, email, phone number, and booking time are required. Thank you!' });
   }
 
-
-  const bookingDate = moment.tz(bookingTime, "Europe/Helsinki").toDate();
-
-  const startOfWorkDay = new Date(bookingDate);
-  startOfWorkDay.setHours(9, 0, 0, 0);
-  const endOfWorkDay = new Date(bookingDate);
-  endOfWorkDay.setHours(18, 0, 0, 0);
-
-
-  const currentDate = new Date();
-  if (bookingDate < currentDate) {
-    return res.status(400).json({ message: 'The booking time cannot be in the past.' });
-  }
-
-
-  if (bookingDate < startOfWorkDay || bookingDate > endOfWorkDay) {
-    return res.status(400).json({ message: 'The booking time must be between 9 AM and 6 PM. Thank you!' });
-  }
-
-  const minBookingDuration = 45 * 60 * 1000;
-  const existingBookings = await Booking.find({ barberName: barberName }).sort({ bookingTime: 1 });
-
-  for (let i = 0; i < existingBookings.length; i++) {
-    const existingBooking = existingBookings[i];
-    const existingBookingStart = existingBooking.bookingTime.getTime();
-    const existingBookingEnd = existingBookingStart + minBookingDuration;
-
-    if (
-      (bookingDate.getTime() < existingBookingEnd && bookingDate.getTime() + minBookingDuration > existingBookingStart)
-    ) {
-      return res.status(400).json({
-        message: 'This time slot is already taken by another client. You can call us to check if there are any available spots at this time.'
-      });
-    }
-  }
-
   try {
+
+    console.log('Received booking data:', req.body);
+
+    const bookingDate = moment.tz(bookingTime, "Europe/Helsinki").toDate();
+    const startOfWorkDay = new Date(bookingDate);
+    startOfWorkDay.setHours(9, 0, 0, 0);
+    const endOfWorkDay = new Date(bookingDate);
+    endOfWorkDay.setHours(18, 0, 0, 0);
+
+    const currentDate = new Date();
+    if (bookingDate < currentDate) {
+      return res.status(400).json({ message: 'The booking time cannot be in the past.' });
+    }
+
+    if (bookingDate < startOfWorkDay || bookingDate > endOfWorkDay) {
+      return res.status(400).json({ message: 'The booking time must be between 9 AM and 6 PM. Thank you!' });
+    }
+
+    const minBookingDuration = 45 * 60 * 1000;
+    const existingBookings = await Booking.find({ barberName: barberName }).sort({ bookingTime: 1 });
+
+    for (let i = 0; i < existingBookings.length; i++) {
+      const existingBooking = existingBookings[i];
+      const existingBookingStart = existingBooking.bookingTime.getTime();
+      const existingBookingEnd = existingBookingStart + minBookingDuration;
+
+      if (
+        (bookingDate.getTime() < existingBookingEnd && bookingDate.getTime() + minBookingDuration > existingBookingStart)
+      ) {
+        return res.status(400).json({
+          message: 'This time slot is already taken by another client. You can call us to check if there are any available spots at this time.'
+        });
+      }
+    }
+
+//----------------------------------------------------------------------------------------------
+
     const newBooking = new Booking({
       clientName,
       serviceType,
@@ -88,11 +95,28 @@ const createBooking = async (req, res) => {
     });
 
     await newBooking.save();
+
+    const mailOptions = {
+      from: 'alprstigehussein@gmail.com',
+      to: email,
+      subject: `Booking Confirmation: Your ${serviceType} Appointment`,
+      text: `Hello ${clientName},\n\nYour booking for ${serviceType} on ${bookingTime} has been successfully confirmed.\n\nThank you for booking with us!`,
+      html: `<p>Hello ${clientName},</p><p>Your booking for <strong>${serviceType}</strong> on <strong>${bookingTime}</strong> has been successfully confirmed.</p><p>Thank you for booking with us!</p>`
+    };
+
+    await transporter.sendMail(mailOptions);
+    console.log('Email sent successfully.');
+
     res.status(201).json(newBooking);
+
   } catch (error) {
-    res.status(500).json({ message: 'Error creating booking', error: error.message });
+    console.error('Error in creating booking:', error.message); 
+    res.status(500).json({ message: 'Error creating booking or sending confirmation email', error: error.message });
   }
 };
+
+//------------------------------------------------------------------------
+
 
 const getBookingById = async (req, res) => {
   const { bookingId } = req.params;
@@ -110,6 +134,8 @@ const getBookingById = async (req, res) => {
     res.status(500).json({ message: 'Error fetching booking', error: error.message });
   }
 };
+
+//----------------------------------------------------------------------------------------------
 
 const updateBooking = async (req, res) => {
   const { bookingId } = req.params;
@@ -134,6 +160,10 @@ const updateBooking = async (req, res) => {
   }
 };
 
+
+//----------------------------------------------------------------------------------------------
+
+
 const deleteBooking = async (req, res) => {
   const { bookingId } = req.params;
   if (!mongoose.Types.ObjectId.isValid(bookingId)) {
@@ -152,6 +182,10 @@ const deleteBooking = async (req, res) => {
     res.status(500).json({ message: 'Error deleting booking', error: error.message });
   }
 };
+
+
+//----------------------------------------------------------------------------------------------
+
 
 module.exports = {
   getAllBookings,

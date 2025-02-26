@@ -1,16 +1,10 @@
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f8f8f8;
-  margin: 0;
-  padding: 0;
-}
-
 .about-container {
+  margin: 5rem auto;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: #ffffff;
-  padding: 50px;
+  padding: 20px;
   gap: 30px;
 }
 
@@ -43,6 +37,7 @@ p {
 
 .read-more {
   background: none;
+  color: black;
   border: 2px solid black;
   padding: 10px 20px;
   font-size: 1rem;

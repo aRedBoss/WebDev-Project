@@ -1,23 +1,29 @@
-/* Basic styles */
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-}
-
 /* Navbar Styles */
 .navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  position: relative;
   background-color: white;
+  margin: 0 auto;
   width: 100%; /* Make navbar full width */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .logo img {
   height: 50px;
   margin-left: 30px;
+  transition: transform 0.3s ease;
+  margin-right: 100px;
+}
+
+.logo img:hover {
+  cursor: pointer;
+  transform: scale(1.05);
 }
 
 .menu {
@@ -37,10 +43,11 @@ body {
 }
 
 /* Buttons */
+
 .buttons {
   display: flex;
   gap: 10px;
-  margin-right: 30px;
+  margin: -10px 30px 0 0;
 }
 
 /* Mobile Styles */
@@ -83,6 +90,24 @@ body {
   width: 100%; /* Make individual buttons full width */
 }
 
+.btn-primary {
+  background-color: rgb(16, 15, 15) !important;
+  color: white !important;
+}
+
+.btn-primary:hover {
+  background-color: rgb(39, 32, 32) !important;
+}
+
+.btn-secondary {
+  background-color: green !important;
+  color: white !important;
+}
+
+.btn-secondary:hover {
+  background-color: rgb(36, 148, 36) !important;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .navbar {
@@ -111,10 +136,12 @@ body {
   .mobile-menu {
     display: flex; /* Show mobile menu */
     flex-direction: column; /* Stack items vertically */
+    justify-content: center;
+    align-items: center;
   }
 
   .mobile-menu a {
-    width: 100%; /* Full width navigation links */
+    width: 95%; /* Full width navigation links */
     background-color: #f9f9f9;
     margin-bottom: 10px;
     text-align: center;

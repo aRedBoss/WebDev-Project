@@ -1,7 +1,8 @@
+import { Link } from "react-router-dom";
 import barbershop from "../../assets/barbershop.jpg";
-import "./About.css";
+import "./AboutUs.css";
 
-const About = () => {
+const AboutUs = () => {
   return (
     <section className="about-container">
       <div className="about-image">
@@ -29,10 +30,12 @@ const About = () => {
           here to provide an unmatched barbering experience. Book your
           appointment today and step out with confidence!
         </p>
-        <button className="read-more">READ MORE</button>
+        <Link to="/booking">
+          <button className="read-more">BOOK NOW</button>
+        </Link>
       </div>
     </section>
   );
 };
 
-export default About;
+export default AboutUs;
