@@ -8,11 +8,23 @@ const {
     deleteUser,
 } = require('../controllers/userController');
 
+const {
+    register,
+    login,
+    reqAccessToken
+} = require('../controllers/authController');
+
 // GET /users
 router.get('/', getAllUsers);
 
 // POST /users
 router.post('/', createUser)
+
+router.post("/register", register);
+
+router.post("/login", login);
+
+router.post("/reqNewAccessToken", reqAccessToken);
 
 // GET /users/:userId
 router.get('/:userId', getUserById)
