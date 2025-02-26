@@ -42,7 +42,7 @@ const reqAccessToken = async (req, res) => {
 
 
 const register = async (req, res) => {
-    const { username, password } = req.body;
+    const { username, password, email, phoneNumber } = req.body;
 
     // Validate username
     const usernameError = validateUsername(username);
@@ -65,7 +65,7 @@ const register = async (req, res) => {
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
 
-        const user = new User({ username, password: hashedPassword })
+        const user = new User({ username, password: hashedPassword, email, phoneNumber })
         await user.save();
 
         res.status(201).json({ message: 'User registered successfully' })
