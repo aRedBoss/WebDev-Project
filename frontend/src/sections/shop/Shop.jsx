@@ -1,60 +1,48 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import Slider from "react-slick";
 import ShopCart from "../../components/shop-chart/ShopCart.jsx";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./Shop.css"; // Import CSS
-import premiumGel from "../../assets/premium-hair-styling-gel.jpg";
-import beardKit from "../../assets/beard-grooming-kit.jpg";
-import shavingCream from "../../assets/luxury-shaving-cream.jpg";
-import clippers from "../../assets/hair-clippers-trimmers.jpg";
-import cologne from "../../assets/mens-cologne-selection.jpg";
-import beardoil from "../../assets/organic-beard-oils.jpg";
 
 const Shop = () => {
+  const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
 
-  const products = [
-    {
-      name: "Premium Hair Styling Gel",
-      image: premiumGel,
-      description: "Strong hold styling gel for a sleek look.",
-      price: "€15",
-    },
-    {
-      name: "Beard Grooming Kit",
-      image: beardKit,
-      description: "Complete set for beard maintenance and care.",
-      price: "€25",
-    },
-    {
-      name: "Luxury Shaving Cream",
-      image: shavingCream,
-      description: "Smooth shaving experience with hydration.",
-      price: "€12",
-    },
-    {
-      name: "Hair Clippers and Trimmers",
-      image: clippers,
-      description: "Professional quality clippers for precise cuts.",
-      price: "€50",
-    },
-    {
-      name: "Men's Cologne Selection",
-      image: cologne,
-      description: "Handpicked premium cologne for every occasion.",
-      price: "€35",
-    },
-    {
-      name: "Organic Beard Oils",
-      image: beardoil,
-      description: "Natural beard oil for soft and healthy hair.",
-      price: "€18",
-    },
-  ];
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch("http://localhost:4000/api/products");
+        if (!response.ok) {
+          throw new Error("Failed to fetch products");
+        }
+        const data = await response.json();
+        setProducts(data);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
 
-  const addToCart = (product) => {
-    setCart([...cart, { ...product, quantity: 1 }]);
+    fetchProducts();
+  }, []);
+
+  const addToCart = async (product) => {
+    try {
+      const response = await fetch("http://localhost:4000/api/cart/add", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ productId: product._id, quantity: 1 }),
+      });
+      if (!response.ok) {
+        throw new Error("Failed to add to cart");
+      }
+      const data = await response.json();
+      setCart([...cart, { ...product, quantity: 1, _id: data._id }]);
+    } catch (error) {
+      console.error("Error adding to cart:", error);
+    }
   };
 
   // Slider settings for infinite loop
@@ -96,7 +84,7 @@ const Shop = () => {
           {products.map((product, index) => (
             <div key={index} className="shop-card">
               <img
-                src={product.image}
+                src={`http://localhost:4000${product.image}`}
                 alt={product.name}
                 className="shop-image"
               />
