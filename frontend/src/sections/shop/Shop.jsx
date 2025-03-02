@@ -12,7 +12,7 @@ const Shop = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch("http://localhost:4000/api/products");
+        const response = await fetch("/api/products");
         if (!response.ok) {
           throw new Error("Failed to fetch products");
         }
@@ -28,7 +28,7 @@ const Shop = () => {
 
   const addToCart = async (product) => {
     try {
-      const response = await fetch("http://localhost:4000/api/cart/add", {
+      const response = await fetch("/api/cart/add", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
