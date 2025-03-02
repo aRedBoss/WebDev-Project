@@ -1,5 +1,7 @@
+/* eslint-disable no-unused-vars */
 import { useState } from "react";
 import Button from "../../components/button/Button";
+import axios from "axios"; 
 import "./ContactForm.css";
 
 function ContactForm() {
@@ -7,17 +9,41 @@ function ContactForm() {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false); 
+  const [responseMessage, setResponseMessage] = useState(""); 
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission here (e.g., send email, save to database)
-    console.log("Form submitted:", { name, email, phone, message });
+    
+
+    setIsSubmitting(true);
+
+    try {
+
+      const response = await axios.post("http://localhost:4000/api/contact", {
+        name,
+        email,
+        phone,
+        message,
+      });
+
+      setResponseMessage(response.data.message); 
+      setName(""); 
+      setEmail("");
+      setPhone("");
+      setMessage("");
+    } catch (error) {
+
+      setResponseMessage("There was an error sending your message. Please try again.");
+    } finally {
+      setIsSubmitting(false); 
+    }
   };
 
   return (
     <div className="contact-form">
       <h2 className="">GET IN TOUCH</h2>
-      <h3 className="">We're here to assist you!</h3>
+      <h3 className="">We Are here to assist you!</h3>
 
       <form onSubmit={handleSubmit}>
         <div className="">
@@ -78,10 +104,15 @@ function ContactForm() {
             required
           ></textarea>
         </div>
-        {/* <button type="submit" className="">
-          SUBMIT
-        </button> */}
-        <Button type="submit" className="btn-secondary" name="SUBMIT" />
+
+        <Button 
+          type="submit" 
+          className="btn-secondary" 
+          name={isSubmitting ? "Submitting..." : "SUBMIT"} 
+          disabled={isSubmitting} 
+        />
+
+        {responseMessage && <div className="response-message">{responseMessage}</div>}
       </form>
     </div>
   );
