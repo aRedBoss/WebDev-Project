@@ -8,7 +8,11 @@ const {
     deleteUser,
 } = require('../controllers/userController');
 
-const { register, login, reqAccessToken } = require('../controllers/authController');
+const {
+    register,
+    login,
+    reqAccessToken
+} = require('../controllers/authController');
 
 // GET /users
 router.get('/', getAllUsers);
