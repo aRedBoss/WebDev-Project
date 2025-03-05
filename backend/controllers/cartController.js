@@ -1,8 +1,9 @@
 const Cart = require("../models/cartModel");
+const Product = require("../models/ProductModel"); // Import Product model
 
 const addToCart = async (req, res) => {
   try {
-    const { name, productId, quantity } = req.body;
+    const { productId, quantity } = req.body;
     const cartItem = new Cart({ productId, quantity });
     await cartItem.save();
     res.json(cartItem);
@@ -21,4 +22,17 @@ const removeFromCart = async (req, res) => {
   }
 };
 
-module.exports = { addToCart, removeFromCart };
+const getCartItems = async (req, res) => {
+  try {
+    const cartItems = await Cart.find().populate(
+      "productId",
+      "name description price",
+    );
+
+    res.json(cartItems);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch cart items" });
+  }
+};
+
+module.exports = { addToCart, removeFromCart, getCartItems };

@@ -7,6 +7,8 @@ const productSchema = new mongoose.Schema({
   image: String, // URL or path to the image
 });
 
-const Product = mongoose.model("Product", productSchema);
+// Check if the model already exists before defining it again
+const Product =
+  mongoose.models.Product || mongoose.model("Product", productSchema);
 
 module.exports = Product;
