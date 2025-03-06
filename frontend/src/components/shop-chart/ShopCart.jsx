@@ -16,7 +16,7 @@ const ShopCart = ({ cart, setCart }) => {
   // };
 
   // Function to update quantity
-  const updateQuantity = (index, change) => {
+  const updateQuantity = async (index, change) => {
     const updatedCart = [...cart];
     updatedCart[index].quantity = Math.max(
       1,

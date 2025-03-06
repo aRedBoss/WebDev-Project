@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const Product = require("./models/productModel");
+const Order = require("./models/orderModel");
 
 dotenv.config();
 
@@ -9,17 +10,11 @@ mongoose.connect("mongodb://127.0.0.1:27017/musa-barber-shop", {
   useUnifiedTopology: true,
 });
 
-// const premiumGel = require("../frontend/src/assets/premium-hair-styling-gel.jpg");
-// const beardKit = require("../frontend/src/assets/beard-grooming-kit.jpg");
-// const shavingCream = require("../frontend/src/assets/luxury-shaving-cream.jpg");
-// const clippers = require("../frontend/src/assets/hair-clippers-trimmers.jpg");
-// const cologne = require("../frontend/src/assets/mens-cologne-selection.jpg");
-// const beardoil = require("../frontend/src/assets/organic-beard-oils.jpg");
-
+// Fake Product Data (Using the same as your seedDB)
 const products = [
   {
     name: "Premium Hair Styling Gel",
-    image: "/uploads/premium-hair-styling-gel.jpg", // Relative path to the image
+    image: "/uploads/premium-hair-styling-gel.jpg",
     description: "Strong hold styling gel for a sleek look.",
     price: 15,
   },
@@ -55,11 +50,75 @@ const products = [
   },
 ];
 
+// Fake Order Data
+const fakeOrders = async () => {
+  await Order.deleteMany({});
+  const createdProducts = await Product.find({}); // Get the products from the database
+
+  const orders = [
+    {
+      userId: new mongoose.Types.ObjectId(), // Replace with a valid user ID if you have users
+      items: [
+        {
+          productId: createdProducts[0]._id,
+          quantity: 2,
+          price: createdProducts[0].price,
+        },
+        {
+          productId: createdProducts[2]._id,
+          quantity: 1,
+          price: createdProducts[2].price,
+        },
+      ],
+      totalPrice: 42, // Calculate totalPrice
+      status: "pending",
+    },
+    {
+      userId: new mongoose.Types.ObjectId(),
+      items: [
+        {
+          productId: createdProducts[3]._id,
+          quantity: 1,
+          price: createdProducts[3].price,
+        },
+        {
+          productId: createdProducts[5]._id,
+          quantity: 3,
+          price: createdProducts[5].price,
+        },
+      ],
+      totalPrice: 104,
+      status: "processing",
+    },
+    {
+      userId: new mongoose.Types.ObjectId(),
+      items: [
+        {
+          productId: createdProducts[1]._id,
+          quantity: 1,
+          price: createdProducts[1].price,
+        },
+        {
+          productId: createdProducts[4]._id,
+          quantity: 2,
+          price: createdProducts[4].price,
+        },
+      ],
+      totalPrice: 95,
+      status: "completed",
+    },
+  ];
+
+  await Order.insertMany(orders);
+  console.log("Fake Order Data Seeded!");
+  mongoose.connection.close();
+};
+
 const seedDB = async () => {
   await Product.deleteMany({});
   await Product.insertMany(products);
   console.log("Database Seeded!");
-  mongoose.connection.close();
+  await fakeOrders(); // seed the orders after products are created.
 };
 
 seedDB();

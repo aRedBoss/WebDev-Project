@@ -25,25 +25,26 @@ const removeFromCart = async (req, res) => {
 // Update cart item quantity
 const updateCartQuantity = async (req, res) => {
   try {
-    const { id } = req.params; // Cart item ID
+    const { id } = req.params.id; // Cart item ID
     const { quantity } = req.body; // New quantity
 
     if (quantity < 1) {
       return res.status(400).json({ error: "Quantity must be at least 1" });
     }
 
-    const cartItem = await Cart.findByIdAndUpdate(
+    const updatedItem = await Cart.findByIdAndUpdate(
       id,
       { quantity },
       { new: true },
     );
 
-    if (!cartItem) {
+    if (!updatedItem) {
       return res.status(404).json({ error: "Cart item not found" });
     }
 
-    res.json(cartItem);
+    res.json(updatedItem);
   } catch (error) {
+    console.error("Error updating cart item quantity:", error);
     res.status(500).json({ error: "Failed to update cart quantity" });
   }
 };

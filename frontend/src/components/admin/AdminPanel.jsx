@@ -4,6 +4,7 @@ import CartLists from "../shop-chart/CartLists";
 import useProducts from "../../hooks/useProducts";
 import ProductList from "../products/ProductList.jsx";
 import AddProductForm from "../products/AddProductForm.jsx";
+import OrderList from "../orders/OrderList.jsx";
 
 const AdminPanel = () => {
   const [activeSection, setActiveSection] = useState("dashboard");
@@ -15,6 +16,13 @@ const AdminPanel = () => {
         return <h2 className="section-title">Users List</h2>;
       case "time-bookings":
         return <h2 className="section-title">Time Bookings List</h2>;
+      case "orders":
+        return (
+          <div>
+            <h2 className="section-title">Orders List</h2>
+            <OrderList />
+          </div>
+        );
       case "cart-bookings":
         return (
           <div>
@@ -73,6 +81,7 @@ const AdminPanel = () => {
           <button onClick={() => setActiveSection("time-bookings")}>
             Time Bookings
           </button>
+          <button onClick={() => setActiveSection("orders")}>Orders</button>
           <button onClick={() => setActiveSection("cart-bookings")}>
             Cart Bookings
           </button>
