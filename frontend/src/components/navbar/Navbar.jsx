@@ -30,15 +30,16 @@ const Navbar = () => {
         <Link to="/booking">
           <Button className="btn-secondary" name="Book" />
         </Link>
-        <Link className="nav-link" to="/admin">Admin Panel</Link>
+        <div className="menu align-middle">
+          <Link className="nav-link" to="/admin">
+            Admin Panel
+          </Link>
+        </div>
       </div>
       <div className="hamburger" onClick={toggleMobileMenu}>
-
-       <Link className="nav-link" to="/admin">Admin Panel</Link>
-                      
         ☰
       </div>
-                        
+
       {isMobileMenuOpen && (
         <div className="mobile-menu">
           <Link to="/" onClick={toggleMobileMenu}>

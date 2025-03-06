@@ -91,7 +91,7 @@ const Shop = () => {
               <div className="shop-info">
                 <h3 className="shop-title">{product.name}</h3>
                 <p className="shop-description">{product.description}</p>
-                <p className="shop-price">{product.price}</p>
+                <p className="shop-price">€{product.price}</p>
                 <button onClick={() => addToCart(product)}>Add to Cart</button>
               </div>
             </div>

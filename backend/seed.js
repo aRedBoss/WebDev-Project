@@ -21,37 +21,37 @@ const products = [
     name: "Premium Hair Styling Gel",
     image: "/uploads/premium-hair-styling-gel.jpg", // Relative path to the image
     description: "Strong hold styling gel for a sleek look.",
-    price: "€15",
+    price: 15,
   },
   {
     name: "Beard Grooming Kit",
     image: "/uploads/beard-grooming-kit.jpg",
     description: "Complete set for beard maintenance and care.",
-    price: "€25",
+    price: 25,
   },
   {
     name: "Luxury Shaving Cream",
     image: "/uploads/luxury-shaving-cream.jpg",
     description: "Smooth shaving experience with hydration.",
-    price: "€12",
+    price: 12,
   },
   {
     name: "Hair Clippers and Trimmers",
     image: "/uploads/hair-clippers-trimmers.jpg",
     description: "Professional quality clippers for precise cuts.",
-    price: "€50",
+    price: 50,
   },
   {
     name: "Men's Cologne Selection",
     image: "/uploads/mens-cologne-selection.jpg",
     description: "Handpicked premium cologne for every occasion.",
-    price: "€35",
+    price: 35,
   },
   {
     name: "Organic Beard Oils",
     image: "/uploads/organic-beard-oils.jpg",
     description: "Natural beard oil for soft and healthy hair.",
-    price: "€18",
+    price: 18,
   },
 ];
 

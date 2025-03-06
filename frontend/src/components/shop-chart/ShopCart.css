@@ -35,7 +35,7 @@
 .cart-table th, .cart-table td {
   padding: 12px;
   text-align: center;
-  border-bottom: 1px solid #ddd;
+  /*border-bottom: 1px solid #ddd;*/
 }
 
 /* Style for product images */
@@ -187,3 +187,8 @@
   background-color: #218838;
 }
 
+.align-items-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
