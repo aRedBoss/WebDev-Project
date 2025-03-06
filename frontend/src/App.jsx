@@ -10,6 +10,7 @@ import Register from "./sections/register/Register.jsx";
 import Footer from "./components/footer/Footer.jsx";
 import Booking from "./sections/booking/Booking.jsx";
 import Shop from "./sections/shop/Shop.jsx";
+import AdminPanel from "./components/admin/AdminPanel.jsx";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             <Route path="/signin" element={<SignIn />} />
             <Route path="/booking" element={<Booking />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/admin" element={<AdminPanel />} />
           </Routes>
         </main>
         <Footer />
