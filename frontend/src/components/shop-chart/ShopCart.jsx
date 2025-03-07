@@ -1,26 +1,45 @@
+import { useState } from "react";
 import "./ShopCart.css"; // Import CSS
 
 const ShopCart = ({ cart, setCart }) => {
+  const [orderConfirmed, setOrderConfirmed] = useState(false); // Add state
+
   // Function to remove an item from the cart
   const removeFromCart = (index) => {
     const updatedCart = cart.filter((_, i) => i !== index);
     setCart(updatedCart);
   };
 
-  // Function to handle booking
-  const bookItem = (item) => {
-    alert(`You have booked: ${item.name}`);
-  };
+  // // Function to handle booking
+  // const bookItem = (item) => {
+  //   alert(`You have booked: ${item.name}`);
+  // };
 
   // Function to update quantity
-  const updateQuantity = (index, change) => {
+  const updateQuantity = async (index, change) => {
     const updatedCart = [...cart];
-    updatedCart[index].quantity = Math.max(1, updatedCart[index].quantity + change);
+    updatedCart[index].quantity = Math.max(
+      1,
+      updatedCart[index].quantity + change,
+    );
     setCart(updatedCart);
   };
 
+  const clearCart = () => {
+    if (
+      window.confirm("Are you sure you want to confirm your booking order?")
+    ) {
+      setCart([]);
+      setOrderConfirmed(true);
+      // Make API call to clear cart on the backend if needed
+    }
+  };
+
   // Calculate total price
-  const totalPrice = cart.reduce((total, item) => total + (parseFloat(item.price.replace("€", "")) * item.quantity), 0);
+  const totalPrice = cart.reduce(
+    (total, item) => total + parseFloat(item.price) * item.quantity,
+    0,
+  );
 
   return (
     <section className="shop-cart">
@@ -42,23 +61,60 @@ const ShopCart = ({ cart, setCart }) => {
             <tbody>
               {cart.map((item, index) => (
                 <tr key={index}>
-                  <td>{item.name}<br/><small>{item.description}</small></td>
-                  <td><img src={item.image} alt={item.name} className="cart-image" /></td>
                   <td>
-                    <button className="quantity-btn" onClick={() => updateQuantity(index, -1)}>-</button>
-                    <input type="text" value={item.quantity} readOnly className="quantity-input" />
-                    <button className="quantity-btn" onClick={() => updateQuantity(index, 1)}>+</button>
+                    {item.name}
+                    <br />
+                    <small>{item.description}</small>
                   </td>
-                  <td>€{(parseFloat(item.price.replace("€", "")) * item.quantity).toFixed(2)}</td>
                   <td>
-                    <button className="book-btn" onClick={() => bookItem(item)}>Book Item</button>
-                    <button className="remove-btn" onClick={() => removeFromCart(index)}>Remove</button>
+                    <img
+                      src={item.image}
+                      alt={item.name}
+                      className="cart-image"
+                    />
+                  </td>
+                  <td>
+                    <button
+                      className="quantity-btn"
+                      onClick={() => updateQuantity(index, -1)}
+                    >
+                      -
+                    </button>
+                    <input
+                      type="text"
+                      value={item.quantity}
+                      readOnly
+                      className="quantity-input"
+                    />
+                    <button
+                      className="quantity-btn"
+                      onClick={() => updateQuantity(index, 1)}
+                    >
+                      +
+                    </button>
+                  </td>
+                  <td>
+                    €{(parseFloat(item.price) * item.quantity).toFixed(2)}
+                  </td>
+                  <td className="align-items-center">
+                    {/*<button className="book-btn" onClick={() => bookItem(item)}>*/}
+                    {/*  Book Item*/}
+                    {/*</button>*/}
+                    <button
+                      className="remove-btn"
+                      onClick={() => removeFromCart(index)}
+                    >
+                      Remove
+                    </button>
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
           <h3 className="total-price">Total: €{totalPrice.toFixed(2)}</h3>
+          <button className="book-btn" onClick={clearCart}>
+            Confirm Booking Order
+          </button>
         </div>
       )}
     </section>

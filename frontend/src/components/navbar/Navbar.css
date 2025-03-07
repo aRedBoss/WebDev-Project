@@ -123,6 +123,12 @@ div.error {
   background-color: rgb(36, 148, 36) !important;
 }
 
+.align-middle {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .navbar {
