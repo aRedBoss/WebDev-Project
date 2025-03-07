@@ -10,8 +10,18 @@
   padding: 10px 20px;
   background-color: white;
   margin: 0 auto;
-  width: 100%; /* Make navbar full width */
+  width: 100%;
+  /* Make navbar full width */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+div.error {
+  padding: 10px;
+  background: #ffefef;
+  border: 1px solid #e7195a;
+  color: #e7195a;
+  border-radius: 4px;
+  margin: 20px 0;
 }
 
 .logo img {
@@ -39,7 +49,8 @@
 }
 
 .menu a:hover {
-  color: #28a745; /* Green hover effect */
+  color: #28a745;
+  /* Green hover effect */
 }
 
 /* Buttons */
@@ -79,20 +90,24 @@
 
 .mobile-buttons {
   display: flex;
-  flex-direction: column; /* Stack buttons vertically */
+  flex-direction: column;
+  /* Stack buttons vertically */
   gap: 10px;
-  width: 100%; /* Make buttons full width */
+  width: 100%;
+  /* Make buttons full width */
   padding: 10px;
 }
 
 .mobile-buttons .btn-primary,
 .mobile-buttons .btn-secondary {
-  width: 100%; /* Make individual buttons full width */
+  width: 100%;
+  /* Make individual buttons full width */
 }
 
 .btn-primary {
   background-color: rgb(16, 15, 15) !important;
   color: white !important;
+  margin-left: 5px;
 }
 
 .btn-primary:hover {
@@ -117,17 +132,21 @@
 /* Responsive */
 @media (max-width: 768px) {
   .navbar {
-    flex-direction: column; /* Stack navbar items in a column */
-    align-items: flex-start; /* Align items to the left */
+    flex-direction: column;
+    /* Stack navbar items in a column */
+    align-items: flex-start;
+    /* Align items to the left */
   }
 
   .menu,
   .buttons {
-    display: none; /* Hide menu and buttons on mobile */
+    display: none;
+    /* Hide menu and buttons on mobile */
   }
 
   .hamburger {
-    display: block; /* Show hamburger menu icon on mobile */
+    display: block;
+    /* Show hamburger menu icon on mobile */
     position: absolute;
     top: 10px;
     right: 20px;
@@ -140,14 +159,17 @@
   }
 
   .mobile-menu {
-    display: flex; /* Show mobile menu */
-    flex-direction: column; /* Stack items vertically */
+    display: flex;
+    /* Show mobile menu */
+    flex-direction: column;
+    /* Stack items vertically */
     justify-content: center;
     align-items: center;
   }
 
   .mobile-menu a {
-    width: 95%; /* Full width navigation links */
+    width: 95%;
+    /* Full width navigation links */
     background-color: #f9f9f9;
     margin-bottom: 10px;
     text-align: center;
@@ -162,6 +184,7 @@
 
 @media (min-width: 769px) {
   .mobile-menu {
-    display: none; /* Hide mobile menu on larger screens */
+    display: none;
+    /* Hide mobile menu on larger screens */
   }
 }

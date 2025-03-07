@@ -1,15 +1,32 @@
+/* eslint-disable no-unused-vars */
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { useLogin } from '../../hooks/useLogin';
+import { useNavigate } from 'react-router-dom';
+import { useAuthContext } from "../../hooks/useAuthContext";
 import "./SignIn.css"; // Ensure you have the styles
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e) => {
+  /* const user = useAuthContext(); */
+
+  const navigate = useNavigate();
+
+  const { login, isLoading, error } = useLogin()
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Signing in with:", email, password);
-    // Add authentication logic here
+
+    await login(email, password);
+
+    const user = localStorage.getItem('user');
+
+    if (user) {
+      navigate('/')
+    }
+
   };
 
   return (
@@ -38,9 +55,10 @@ const SignIn = () => {
             Forgot Password?
           </Link>
 
-          <button type="submit" className="signin-button">
+          <button disabled={isLoading} type="submit" className="signin-button">
             Sign In
           </button>
+          {error && <div className="error">{error}</div>}
         </form>
 
         <p className="register-text">
