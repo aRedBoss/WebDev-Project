@@ -13,12 +13,12 @@ const ProductList = ({ products, loading, error }) => {
         method: "DELETE",
       });
       if (!res.ok) {
-        console.log("Failed to delete job");
+        console.log("Failed to delete product");
         return false; // Return false if delete fails
       }
       return true; // Return true if delete is successful
     } catch (error) {
-      console.error("Error deleting job:", error);
+      console.error("Error deleting product:", error);
       navigate("/admin");
     }
   };
@@ -31,12 +31,12 @@ const ProductList = ({ products, loading, error }) => {
 
     const success = await deleteJob(jobId);
     if (success) {
-      console.log("Job Deleted Successfully!");
-      toast.success("Job Deleted Successfully!");
+      console.log("Product Deleted Successfully!");
+      toast.success("Product Deleted Successfully!");
       navigate("/");
     } else {
-      console.error("Failed to delete the job!");
-      toast.error("Failed to delete the job!");
+      console.error("Failed to delete the product!");
+      toast.error("Failed to delete the product!");
       navigate("/");
     }
   };
