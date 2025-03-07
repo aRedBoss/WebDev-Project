@@ -13,7 +13,7 @@ export default function CartLists() {
     <div>
       <ul>
         {cartItems.map((item) => (
-          <li key={`item.${id}`}>
+          <li key={item.productId._id}>
             <h3>{item.productId.name}</h3>
             <p>{item.productId.description}</p>
             <p>Price: ${item.productId.price}</p>
