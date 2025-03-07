@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import "./ServiceCard.css"; // Apply styles
 
 const ServiceCard = ({ title, description, image }) => {
@@ -5,7 +7,11 @@ const ServiceCard = ({ title, description, image }) => {
     <div className="service-card">
       <img src={image} alt={title} className="service-image" />
       <div className="service-content">
-        <h3>{title} &gt;</h3>
+        <div className="service-title-container">
+          <Link to="/booking" className="service-title">
+            {title} &gt;
+          </Link>
+        </div>
         <p>{description}</p>
       </div>
     </div>

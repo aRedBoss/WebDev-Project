@@ -3,6 +3,11 @@ const mongoose = require("mongoose");
 const orderSchema = new mongoose.Schema({
   items: [
     {
+      user_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: false, // Not required because the user might not be authenticated
+        ref: "User",
+      },
       productId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Product", // Assuming you have a Product model

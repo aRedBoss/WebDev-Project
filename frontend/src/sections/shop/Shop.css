@@ -1,78 +1,82 @@
 .shop-section {
-  margin: 5rem auto;
-  text-align: center;
-  padding: 20px;
+    margin: 5rem auto;
+    text-align: center;
+    padding: 20px;
 }
 
 .shop-slider-container {
-  width: 80%;
-  margin: auto;
+    width: 80%;
+    margin: auto;
 }
 
 .shop-card {
-  background: #fff;
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  transition: transform 0.3s ease-in-out;
+    background: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
 }
 
 .shop-card:hover {
-  transform: scale(1.05);
+    transform: scale(1.05);
 }
 
 .shop-image {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-  margin-bottom: 10px;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-bottom: 10px;
 }
 
 .shop-info {
-  margin-top: 10px;
+    margin-top: 10px;
 }
 
 .shop-title {
-  font-size: 18px;
-  font-weight: bold;
+    font-size: 18px;
+    font-weight: bold;
 }
 
 .shop-description {
-  font-size: 14px;
-  color: gray;
+    font-size: 14px;
+    color: gray;
 }
 
 .shop-price {
-  font-size: 16px;
-  font-weight: bold;
-  color: #27ae60;
+    font-size: 16px;
+    font-weight: bold;
+    color: #27ae60;
 }
 
 button {
-  background: #27ae60;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  margin-top: 10px;
-  cursor: pointer;
-  border-radius: 5px;
-  transition: 0.3s;
+    background: #27ae60;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s;
 }
 
 button:hover {
-  background: #f7f7f7;
+    background: #f7f7f7;
 }
 
 .shop-card img {
-  display: block;
-  margin: 0 auto;
-  max-width: 100px; /* Adjust size as needed */
-  height: auto;
+    display: block;
+    margin: 0 auto;
+    max-width: 100px; /* Adjust size as needed */
+    height: auto;
 }
 
+.margin-tb {
+    margin-bottom: 40px !important;
+    font-weight: bold;
+}
 
-/* Adjust slider arrows  
+/* Adjust slider arrows
 .slick-prev,
 .slick-next {
   font-size: 1px;

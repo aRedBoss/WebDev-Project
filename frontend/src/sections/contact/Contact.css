@@ -19,7 +19,7 @@
 /* Contact Form Styles */
 .contact-form {
   background-color: white;
-  /*padding: 20px;*/
+  padding: 30px 30px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }

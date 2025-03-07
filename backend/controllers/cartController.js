@@ -4,10 +4,49 @@ const Product = require("../models/ProductModel"); // Import Product model
 const addToCart = async (req, res) => {
   try {
     const { productId, quantity } = req.body;
-    const cartItem = new Cart({ productId, quantity });
-    await cartItem.save();
-    res.json(cartItem);
+
+    // Validate that quantity is a positive number
+    if (!Number.isInteger(quantity) || quantity < 1) {
+      return res
+        .status(400)
+        .json({ message: "Quantity must be a positive integer" });
+    }
+
+    // Find the product
+    const product = await Product.findById(productId);
+    if (!product) {
+      return res.status(404).json({ message: "Product not found" });
+    }
+
+    // Find the cart (assuming a single cart for simplicity)
+    let cart = await Cart.findOne();
+    if (!cart) {
+      cart = new Cart();
+    }
+
+    // Check if the product is already in the cart
+    const existingItem = cart.items.find((item) =>
+      item.productId.equals(productId),
+    );
+    if (existingItem) {
+      // Update the quantity of the existing item
+      existingItem.quantity += quantity;
+    } else {
+      // Add the new item to the cart
+      cart.items.push({ productId, quantity });
+    }
+    // Update the total price
+    cart.totalPrice = cart.items.reduce(
+      (total, item) => total + item.quantity * product.price,
+      0,
+    );
+
+    // Save the cart
+    await cart.save();
+
+    res.json(cart);
   } catch (error) {
+    console.error("Error adding to cart:", error);
     res.status(500).json({ error: "Failed to add to cart" });
   }
 };

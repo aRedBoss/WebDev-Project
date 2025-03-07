@@ -77,7 +77,7 @@ const Shop = () => {
   return (
     <section className="shop-section">
       <h2>Our Shop</h2>
-      <p>Explore our high-quality grooming products.</p>
+      <p className="margin-tb">Explore our high-quality grooming products.</p>
 
       <div className="shop-slider-container">
         <Slider {...sliderSettings}>

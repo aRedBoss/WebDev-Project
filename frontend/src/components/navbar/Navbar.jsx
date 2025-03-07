@@ -22,6 +22,9 @@ const Navbar = () => {
         <Link to="/services">Services</Link>
         <Link to="/shop">Shop</Link>
         <Link to="/contact">Contact</Link>
+        <Link className="nav-link" to="/admin">
+          Admin Panel
+        </Link>
       </div>
       <div className="buttons">
         <Link to="/signin">
@@ -30,11 +33,6 @@ const Navbar = () => {
         <Link to="/booking">
           <Button className="btn-secondary" name="Book" />
         </Link>
-        <div className="menu align-middle">
-          <Link className="nav-link" to="/admin">
-            Admin Panel
-          </Link>
-        </div>
       </div>
       <div className="hamburger" onClick={toggleMobileMenu}>
         ☰

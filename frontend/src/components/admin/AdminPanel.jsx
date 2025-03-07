@@ -1,21 +1,25 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import "./AdminPanel.css";
 import CartLists from "../shop-chart/CartLists";
 import useProducts from "../../hooks/useProducts";
 import ProductList from "../products/ProductList.jsx";
 import AddProductForm from "../products/AddProductForm.jsx";
 import OrderList from "../orders/OrderList.jsx";
+import useOrders from "../../hooks/useOrders.jsx";
+import useCart from "../../hooks/useCart.jsx";
 
 const AdminPanel = () => {
   const [activeSection, setActiveSection] = useState("dashboard");
   const { products, loading, error } = useProducts([]);
+  const { orders, loadingOrders, errorOrders } = useOrders([]);
+  const { cartItems, loadingCart, errorCart } = useCart([]);
 
   const renderContent = () => {
     switch (activeSection) {
       case "users":
         return <h2 className="section-title">Users List</h2>;
       case "time-bookings":
-        return <h2 className="section-title">Time Bookings List</h2>;
+        return <h2 className="section-title">Bookings List</h2>;
       case "orders":
         return (
           <div>
@@ -26,7 +30,7 @@ const AdminPanel = () => {
       case "cart-bookings":
         return (
           <div>
-            <h2 className="section-title">Cart Booking List</h2>
+            <h2 className="section-title">Cart Reservations List</h2>
             <CartLists />
           </div>
         );
@@ -55,12 +59,16 @@ const AdminPanel = () => {
                 <p>35</p>
               </div>
               <div className="card">
-                <h3>Services</h3>
-                <p>10</p>
+                <h3>Orders</h3>
+                <p>{orders.length}</p>
+              </div>
+              <div className="card">
+                <h3>Cart Reservations</h3>
+                <p>{cartItems.length}</p>
               </div>
               <div className="card">
                 <h3>Products</h3>
-                <p>50</p>
+                <p>{products.length}</p>
               </div>
             </div>
           </>
@@ -79,13 +87,12 @@ const AdminPanel = () => {
           </button>
           <button onClick={() => setActiveSection("users")}>Users</button>
           <button onClick={() => setActiveSection("time-bookings")}>
-            Time Bookings
+            Bookings
           </button>
           <button onClick={() => setActiveSection("orders")}>Orders</button>
           <button onClick={() => setActiveSection("cart-bookings")}>
-            Cart Bookings
+            Cart Reservations
           </button>
-          <button onClick={() => setActiveSection("services")}>Services</button>
           <button onClick={() => setActiveSection("products")}>Products</button>
           <button onClick={() => setActiveSection("settings")}>Settings</button>
         </nav>

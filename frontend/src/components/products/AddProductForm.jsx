@@ -7,6 +7,7 @@ const AddProductForm = ({ onProductAdded }) => {
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [image, setImage] = useState(""); // Assuming image URL
+  const [quantity, setQuantity] = useState(0);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,7 +18,7 @@ const AddProductForm = ({ onProductAdded }) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ name, description, price, image }),
+        body: JSON.stringify({ name, description, price, image, quantity }),
       });
 
       if (response.ok) {
@@ -26,6 +27,7 @@ const AddProductForm = ({ onProductAdded }) => {
         setDescription("");
         setPrice("");
         setImage("");
+        setQuantity(0);
         if (onProductAdded) {
           onProductAdded();
         }
@@ -43,7 +45,7 @@ const AddProductForm = ({ onProductAdded }) => {
 
   return (
     <div className="add-product-form">
-      <h2>Add New Product</h2>
+      <h3>Add New Product</h3>
       <form onSubmit={handleSubmit}>
         <label>
           Name:
@@ -68,6 +70,7 @@ const AddProductForm = ({ onProductAdded }) => {
             type="number"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
+            min="0"
             required
           />
         </label>
@@ -77,6 +80,16 @@ const AddProductForm = ({ onProductAdded }) => {
             type="text"
             value={image}
             onChange={(e) => setImage(e.target.value)}
+          />
+        </label>
+        <label>
+          Quantity:
+          <input
+            type="number"
+            value={quantity}
+            onChange={(e) => setQuantity(e.target.value)}
+            min="0"
+            required
           />
         </label>
         <button type="submit">Add Product</button>

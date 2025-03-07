@@ -1,14 +1,26 @@
 const mongoose = require("mongoose");
 
 const cartItemSchema = new mongoose.Schema({
-  productId: { type: mongoose.Schema.Types.ObjectId, ref: "Product" },
+  user_id: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: false, // Not required because the user might not be authenticated
+    ref: "User",
+  },
+  productId: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: "Product",
+  },
   quantity: { type: Number, default: 1 },
-  // user_id: {
-  //   type: mongoose.Schema.Types.ObjectId,
-  //   required: true,
-  //   ref: "User",
-  // },
 });
+
+const cartSchema = new mongoose.Schema(
+  {
+    items: [cartItemSchema],
+    totalPrice: { type: Number, default: 0 },
+  },
+  { timestamps: true },
+);
 
 // Add virtual field id
 cartItemSchema.set("toJSON", {
@@ -19,6 +31,6 @@ cartItemSchema.set("toJSON", {
   },
 });
 
-const Cart = mongoose.models.Cart || mongoose.model("Cart", cartItemSchema);
+const Cart = mongoose.models.Cart || mongoose.model("Cart", cartSchema);
 
 module.exports = Cart;

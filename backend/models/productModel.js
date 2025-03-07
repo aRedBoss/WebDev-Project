@@ -5,6 +5,7 @@ const productSchema = new mongoose.Schema({
   description: String,
   price: Number,
   image: String, // URL or path to the image
+  quantity: { type: Number, required: true, default: 0 }, // Add quantity field
 });
 
 // Add virtual field id

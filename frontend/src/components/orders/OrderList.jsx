@@ -20,6 +20,8 @@ const OrderList = () => {
               <th>Total Price</th>
               <th>Order Date</th>
               <th>Status</th>
+              <th className="th-center">Action</th>
+              <th className="th-center">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -30,6 +32,22 @@ const OrderList = () => {
                 <td>${order.totalPrice}</td>
                 <td>{new Date(order.orderDate).toLocaleString()}</td>
                 <td>{order.status}</td>
+                <td className="td-center">
+                  <button
+                    className="edit-btn"
+                    onClick={() => onEdit(product._id)}
+                  >
+                    Edit
+                  </button>
+                </td>
+                <td className="td-center">
+                  <button
+                    className="remove-btn"
+                    onClick={() => onDelete(product._id)}
+                  >
+                    Delete
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>

@@ -23,3 +23,25 @@
     font-weight: bold;
     margin-bottom: 8px;
 }
+
+.service-title-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.service-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.service-title:hover {
+    color: green;
+    text-decoration: underline;
+}
+
+.service-align {
+    padding-top: 40px;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
