@@ -1,20 +1,20 @@
 const User = require('../models/userModel');
 const bcrypt = require('bcrypt');
-require('dotenv').config();
 const jwt = require('jsonwebtoken');
-const { validateUsername, validatePassword, validateLogin } = require('../validateCredentials');
+const validator = require('validator');
+const { validateUsername } = require('../validateCredentials')
 
 const generateAccessToken = (user) => {
     return jwt.sign(
-        { id: user._id, username: user.username },
+        { id: user._id, role: user.role },
         process.env.ACCESS_TOKEN_SECRET,
-        { expiresIn: '30m' }
+        { expiresIn: '1h' }
     );
 };
 
 const generateRefreshToken = (user) => {
     return jwt.sign(
-        { id: user._id, username: user.username },
+        { id: user._id, role: user.role },
         process.env.REFRESH_TOKEN_SECRET,
         { expiresIn: '7d' }
     );
@@ -50,16 +50,25 @@ const register = async (req, res) => {
         return res.status(usernameError.statusCode).json({ error: usernameError.error });
     }
 
+    if (!validator.isMobilePhone(phoneNumber, 'any')) {
+        return res.status(400).json({ error: 'Invalid phone number format' });
+    }
+
+
+    //validate email
+    if (!validator.isEmail(email)) {
+        return res.status(400).json({ error: 'Incorrect email format' })
+    }
+
     // Validate password
-    const passwordError = validatePassword(password);
-    if (passwordError) {
-        return res.status(passwordError.statusCode).json({ error: passwordError.error });
+    if (!validator.isStrongPassword(password)) {
+        return res.status(400).json({ error: 'Password not strong enough' })
     }
 
     try {
-        const existingUser = await User.findOne({ username });
+        const existingUser = await User.findOne({ email });
         if (existingUser) {
-            return res.status(400).json({ error: "Username is already taken" })
+            return res.status(400).json({ error: "User already exist" })
         }
 
         const salt = await bcrypt.genSalt(10);
@@ -68,7 +77,9 @@ const register = async (req, res) => {
         const user = new User({ username, password: hashedPassword, email, phoneNumber })
         await user.save();
 
-        res.status(201).json({ message: 'User registered successfully' })
+        const accessToken = generateAccessToken(user);
+
+        res.status(201).json({ email: user.email, accessToken })
     } catch (error) {
         console.error("Server Error:", error); // Debugging
         res.status(500).json({ error: "Server error" });
@@ -79,14 +90,14 @@ const register = async (req, res) => {
 }
 
 const login = async (req, res) => {
-    const { username, password } = req.body;
+    const { email, password } = req.body;
     try {
-        const loginError = validateLogin(username, password);
+        /* const loginError = validateLogin(username, password);
         if (loginError) {
             return res.status(loginError.statusCode).json({ error: loginError.error })
-        }
+        } */
 
-        const user = await User.findOne({ username });
+        const user = await User.findOne({ email });
         if (!user) {
             return res.status(400).json({ error: "User does not exist" })
         }
@@ -101,9 +112,8 @@ const login = async (req, res) => {
         await user.save();
 
         res.status(200).json({
-            message: 'Login successful',
+            email,
             accessToken: accessToken,
-            refreshToken,
         })
 
     } catch (error) {

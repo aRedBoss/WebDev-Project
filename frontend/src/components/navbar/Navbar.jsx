@@ -1,11 +1,43 @@
-import { useState } from "react";
+/* eslint-disable no-unused-vars */
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom"; // Import Link
 import Button from "../button/Button"; // Import Buttons
 import logoImage from "../../assets/barber-logo.png"; // Make sure the path is correct
+import { jwtDecode } from 'jwt-decode';
 import "./Navbar.css"; // Import the CSS file
 
+import { useLogout } from '../../hooks/useLogout'
+import { useAuthContext } from "../../hooks/useAuthContext";
+
 const Navbar = () => {
+  const [isAdmin, setIsAdmin] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { logout } = useLogout();
+
+  const { user } = useAuthContext()
+
+  useEffect(() => {
+    if (user && user.accessToken) { // Check if user and accessToken exist
+      try {
+        const token = user.accessToken;
+        const decoded = jwtDecode(token);
+        if (decoded.role === 'admin') {
+          setIsAdmin(true);
+        } else {
+          setIsAdmin(false);
+        }
+      } catch (error) {
+        console.error('Invalid token', error);
+      }
+    }
+  }, [user]);
+
+  const handleClick = () => {
+
+    logout();
+    setIsAdmin(false);
+
+  }
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -24,21 +56,25 @@ const Navbar = () => {
         <Link to="/contact">Contact</Link>
       </div>
       <div className="buttons">
-        <Link to="/signin">
+        {user && <div>
+          <span>{user.email}</span>
+          <button className="btn-primary" onClick={handleClick}>Log out</button>
+        </div>}
+        {!user && <Link to="/signin">
           <Button className="btn-primary" name="Sign In" />
-        </Link>
-        <Link to="/booking">
+        </Link>}
+        {!isAdmin && <Link to="/booking">
           <Button className="btn-secondary" name="Book" />
-        </Link>
-        <Link className="nav-link" to="/admin">Admin Panel</Link>
+        </Link>}
+        {isAdmin && <Link className="nav-link" to="/admin">
+          <Button className="btn-secondary" name="Admin Panel" />
+        </Link>}
       </div>
       <div className="hamburger" onClick={toggleMobileMenu}>
 
-       <Link className="nav-link" to="/admin">Admin Panel</Link>
-                      
         ☰
       </div>
-                        
+
       {isMobileMenuOpen && (
         <div className="mobile-menu">
           <Link to="/" onClick={toggleMobileMenu}>
