@@ -76,15 +76,15 @@ button:hover {
     font-weight: bold;
 }
 
-/* Adjust slider arrows
-.slick-prev,
-.slick-next {
-  font-size: 1px;
-  color: rgb(249, 248, 248);
+/*Adjust slider arrows*/
+.slick-prev:before,
+.slick-next:before {
+    color: #27ae60 !important;  /* Change arrow color */
+    font-size: 24px !important; /* Adjust size if needed */
 }
 
 .slick-prev:hover,
 .slick-next:hover {
-  color: #27ae60;
+  color: #1b783f;
 }
-*/
+
