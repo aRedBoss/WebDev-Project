@@ -4,44 +4,49 @@ const Product = require("../models/ProductModel"); // Import Product model
 const addToCart = async (req, res) => {
   try {
     const { productId, quantity } = req.body;
+    const userId = req.user.id;
 
-    // Validate that quantity is a positive number
     if (!Number.isInteger(quantity) || quantity < 1) {
       return res
         .status(400)
         .json({ message: "Quantity must be a positive integer" });
     }
 
-    // Find the product
     const product = await Product.findById(productId);
     if (!product) {
       return res.status(404).json({ message: "Product not found" });
     }
 
-    // Find the cart (assuming a single cart for simplicity)
-    let cart = await Cart.findOne();
-    if (!cart) {
-      cart = new Cart();
-    }
+    console.log("req.user:", req.user);
+    let cart = await Cart.findOne({ user: userId });
+    console.log("Cart found:", cart);
 
-    // Check if the product is already in the cart
-    const existingItem = cart.items.find((item) =>
-      item.productId.equals(productId),
+    if (!cart) {
+      console.log("Creating new cart for user:", userId);
+      cart = new Cart({ user: userId, items: [] });
+      console.log("New cart created:", cart);
+    }
+    console.log("Cart before items access:", cart);
+
+    const existingItem = cart.items.find(
+      (item) => item.productId && item.productId.equals(productId),
     );
+
     if (existingItem) {
-      // Update the quantity of the existing item
-      existingItem.quantity += quantity;
+      existingItem.quantity = quantity;
     } else {
-      // Add the new item to the cart
       cart.items.push({ productId, quantity });
     }
-    // Update the total price
-    cart.totalPrice = cart.items.reduce(
-      (total, item) => total + item.quantity * product.price,
-      0,
+
+    cart = await cart.populate(
+      "items.productId",
+      "name description price image",
     );
 
-    // Save the cart
+    cart.totalPrice = cart.items.reduce((total, item) => {
+      return total + item.quantity * item.productId.price;
+    }, 0);
+
     await cart.save();
 
     res.json(cart);
