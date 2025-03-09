@@ -69,7 +69,7 @@ const Shop = () => {
     autoplay: true, // Auto-slide
     autoplaySpeed: 2000, // Slide every 2 seconds
     pauseOnHover: true, // Pause when hovered
-    //arrows: true, // Show prev/next arrows
+    arrows: true, // Show prev/next arrows
     responsive: [
       {
         breakpoint: 1024,
