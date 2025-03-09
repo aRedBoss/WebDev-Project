@@ -6,8 +6,8 @@ const Order = require("./models/orderModel");
 dotenv.config();
 
 mongoose.connect("mongodb://127.0.0.1:27017/musa-barber-shop", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
+  /* useNewUrlParser: true,
+  useUnifiedTopology: true, */
 });
 
 // Fake Product Data (Using the same as your seedDB)
