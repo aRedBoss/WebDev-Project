@@ -1,12 +1,20 @@
 const mongoose = require("mongoose");
 
-const productSchema = new mongoose.Schema({
-  name: String,
-  description: String,
-  price: Number,
-  image: String, // URL or path to the image
-  quantity: { type: Number, required: true, default: 0 }, // Add quantity field
-});
+const productSchema = new mongoose.Schema(
+  {
+    name: String,
+    description: String,
+    price: Number,
+    image: String, // URL or path to the image
+    quantity: { type: Number, required: true, default: 0 }, // Add quantity field
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: false,
+    }, // Add userId field
+  },
+  { timestamps: true },
+);
 
 // Add virtual field id
 productSchema.set("toJSON", {

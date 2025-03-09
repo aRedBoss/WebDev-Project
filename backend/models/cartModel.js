@@ -1,29 +1,38 @@
 const mongoose = require("mongoose");
 
-const cartItemSchema = new mongoose.Schema({
-  user_id: {
-    type: mongoose.Schema.Types.ObjectId,
-    required: false, // Not required because the user might not be authenticated
-    ref: "User",
+const cartSchema = new mongoose.Schema({
+  items: [
+    {
+      productId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Product",
+        required: true,
+      },
+      quantity: {
+        type: Number,
+        required: true,
+        default: 1,
+      },
+    },
+  ],
+  orderDate: {
+    type: Date,
+    default: Date.now,
   },
-  productId: {
-    type: mongoose.Schema.Types.ObjectId,
-    required: true,
-    ref: "Product",
-  },
-  quantity: { type: Number, default: 1 },
+  // status: {
+  //   type: String,
+  //   enum: ["pending", "processing", "shipped", "completed", "cancelled"],
+  //   default: "pending",
+  // },
+  // total: {
+  //   type: Number,
+  //   required: false,
+  // },
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
 });
 
-const cartSchema = new mongoose.Schema(
-  {
-    items: [cartItemSchema],
-    totalPrice: { type: Number, default: 0 },
-  },
-  { timestamps: true },
-);
-
 // Add virtual field id
-cartItemSchema.set("toJSON", {
+cartSchema.set("toJSON", {
   virtuals: true,
   transform: (doc, ret) => {
     ret.id = ret._id;

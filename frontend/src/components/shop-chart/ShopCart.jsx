@@ -25,19 +25,37 @@ const ShopCart = ({ cart, setCart }) => {
     setCart(updatedCart);
   };
 
-  const clearCart = () => {
+  const clearCart = async () => {
     if (
       window.confirm("Are you sure you want to confirm your booking order?")
     ) {
-      setCart([]);
-      setOrderConfirmed(true);
-      // Make API call to clear cart on the backend if needed
+      try {
+        const response = await fetch("/api/orders", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            items: cart.map((item) => ({
+              product: item.id,
+              quantity: item.quantity,
+            })),
+            total: totalPrice,
+            user: "USER_ID_HERE", // Replace it with actual user ID
+          }),
+        });
+
+        if (!response.ok) throw new Error("Failed to create order");
+
+        setCart([]);
+        setOrderConfirmed(true);
+      } catch (error) {
+        console.error("Order creation failed:", error);
+      }
     }
   };
 
   // Calculate total price
   const totalPrice = cart.reduce(
-    (total, item) => total + parseFloat(item.price) * item.quantity,
+    (total, item) => total + Number(item.price) * item.quantity,
     0,
   );
 
@@ -68,7 +86,7 @@ const ShopCart = ({ cart, setCart }) => {
                   </td>
                   <td>
                     <img
-                      src={item.image}
+                      src={`http://localhost:4000${item.image}`}
                       alt={item.name}
                       className="cart-image"
                     />
@@ -93,9 +111,7 @@ const ShopCart = ({ cart, setCart }) => {
                       +
                     </button>
                   </td>
-                  <td>
-                    €{(parseFloat(item.price) * item.quantity).toFixed(2)}
-                  </td>
+                  <td>€{(Number(item.price) * item.quantity).toFixed(2)}</td>
                   <td className="align-items-center">
                     {/*<button className="book-btn" onClick={() => bookItem(item)}>*/}
                     {/*  Book Item*/}

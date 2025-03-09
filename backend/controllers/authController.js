@@ -2,13 +2,20 @@ const User = require("../models/userModel");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const validator = require("validator");
+const dotenv = require("dotenv");
 const { validateUsername } = require("../validateCredentials");
 
+dotenv.config();
+
 const generateAccessToken = (user) => {
+  console.log(
+    "generateAccessToken ACCESS_TOKEN_SECRET:",
+    process.env.ACCESS_TOKEN_SECRET,
+  ); // Log the secret
   return jwt.sign(
     { id: user._id, role: user.role },
     process.env.ACCESS_TOKEN_SECRET,
-    { expiresIn: "1h" },
+    { expiresIn: "1d" },
   );
 };
 
@@ -19,6 +26,7 @@ const generateAccessToken = (user) => {
 //         { expiresIn: '7d' }
 //     );
 // }
+
 const reqAccessToken = async (req, res) => {
   const { refreshToken } = req.body;
   if (!refreshToken)
