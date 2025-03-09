@@ -53,21 +53,21 @@ const Booking = () => {
       email: formData.email,
       phoneNumber: formData.phoneNumber,
       barberName: formData.barberName,
-      bookingTime: `${formData.date}T${formData.bookingTime}:00`, // Ensure correct format
+      bookingTime: `${formData.date}T${formData.bookingTime}:00`,  
     };
   
-    console.log("📌 Sending booking data to backend:", bookingData); // 🔹 Debugging Log
+    console.log("Sending booking data to backend:", bookingData);  
   
     try {
       const response = await axios.post("/api/booking", bookingData);
       
-      console.log("✅ Booking successful:", response.data);
+      console.log("Booking successful:", response.data);
       
       // Show success message
       setError(""); 
       alert("Booking confirmed!");
     } catch (error) {
-      console.error("🚨 Error creating booking:", error.response?.data || error.message);
+      console.error("Error creating booking:", error.response?.data || error.message);
       
       // Set error message from backend
       setError(error.response?.data?.message || "There was an error with your booking. Please try again.");
