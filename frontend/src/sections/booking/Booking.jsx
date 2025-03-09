@@ -16,10 +16,10 @@ const Booking = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState("");
 
-  const handleChange = (e) => {
+   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
+  /*
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitted(true);
@@ -41,7 +41,39 @@ const Booking = () => {
       console.error("Error creating booking:", error);
     }
   };
+ */
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitted(true);
+  
+    const bookingData = {
+      clientName: formData.clientName,
+      serviceType: formData.serviceType,
+      email: formData.email,
+      phoneNumber: formData.phoneNumber,
+      barberName: formData.barberName,
+      bookingTime: `${formData.date}T${formData.bookingTime}:00`,  
+    };
+  
+    console.log("Sending booking data to backend:", bookingData);  
+  
+    try {
+      const response = await axios.post("/api/booking", bookingData);
+      
+      console.log("Booking successful:", response.data);
+      
+      // Show success message
+      setError(""); 
+      alert("Booking confirmed!");
+    } catch (error) {
+      console.error("Error creating booking:", error.response?.data || error.message);
+      
+      // Set error message from backend
+      setError(error.response?.data?.message || "There was an error with your booking. Please try again.");
+    }
+  };
+  
   return (
     <div className="booking-container">
       <div className="booking-form">

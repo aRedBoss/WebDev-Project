@@ -1,0 +1,5 @@
+NODE_ENV=development
+PORT=4000
+MONGO_URI=mongodb://localhost:27017/musa-barber-shop
+MONGO_URI_TEST=mongodb://localhost:27017/musa-barber-shop-test
+ACCESS_TOKEN_SECRET=de275ddb6cf11c4dfcdbb3afedf3439f482b85b
