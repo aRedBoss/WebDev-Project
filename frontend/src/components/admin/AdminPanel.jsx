@@ -7,6 +7,7 @@ import AddProductForm from "../products/AddProductForm.jsx";
 import OrderList from "../orders/OrderList.jsx";
 import useOrders from "../../hooks/useOrders.jsx";
 import useCart from "../../hooks/useCart.jsx";
+import AdminBookings from "./AdminBookings"; // Import AdminBookings Component
 
 const AdminPanel = () => {
   const [activeSection, setActiveSection] = useState("dashboard");
@@ -19,7 +20,7 @@ const AdminPanel = () => {
       case "users":
         return <h2 className="section-title">Users List</h2>;
       case "time-bookings":
-        return <h2 className="section-title">Bookings List</h2>;
+        return <AdminBookings />; // Show the Bookings List component
       case "orders":
         return (
           <div>
@@ -82,17 +83,11 @@ const AdminPanel = () => {
       <div className="sidebar">
         <h4>Admin Panel</h4>
         <nav>
-          <button onClick={() => setActiveSection("dashboard")}>
-            Dashboard
-          </button>
+          <button onClick={() => setActiveSection("dashboard")}>Dashboard</button>
           <button onClick={() => setActiveSection("users")}>Users</button>
-          <button onClick={() => setActiveSection("time-bookings")}>
-            Bookings
-          </button>
+          <button onClick={() => setActiveSection("time-bookings")}>Bookings</button>
           <button onClick={() => setActiveSection("orders")}>Orders</button>
-          <button onClick={() => setActiveSection("cart-bookings")}>
-            Cart Reservations
-          </button>
+          <button onClick={() => setActiveSection("cart-bookings")}>Cart Reservations</button>
           <button onClick={() => setActiveSection("products")}>Products</button>
           <button onClick={() => setActiveSection("settings")}>Settings</button>
         </nav>
