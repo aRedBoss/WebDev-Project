@@ -1,9 +1,7 @@
 import useCart from "../../hooks/useCart";
-import { useParams } from "react-router-dom";
 
 export default function CartLists() {
-  const { id } = useParams();
-  const { cartItems, loading, error } = useCart("/api/cart");
+  const { cartItems, loading, error } = useCart("/api/cart/all");
 
   if (loading) return <p>Loading cart...</p>;
   if (error) return <p>Error: {error}</p>;
@@ -20,6 +18,8 @@ export default function CartLists() {
             <p>Quantity: {item.quantity}</p>
           </li>
         ))}
+        <h3>User: {cartItems.userId.email}</h3>
+        <h3>User: {cartItems.userId.phoneNumber}</h3>
       </ul>
     </div>
   );

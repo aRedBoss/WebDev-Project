@@ -15,6 +15,15 @@ const cartSchema = new mongoose.Schema({
       },
     },
   ],
+  total: {
+    type: Number,
+    required: false,
+  },
+  status: {
+    type: String,
+    enum: ["pending", "processing", "shipped", "completed", "cancelled"],
+    default: "pending",
+  },
   orderDate: {
     type: Date,
     default: Date.now,
@@ -23,10 +32,6 @@ const cartSchema = new mongoose.Schema({
   //   type: String,
   //   enum: ["pending", "processing", "shipped", "completed", "cancelled"],
   //   default: "pending",
-  // },
-  // total: {
-  //   type: Number,
-  //   required: false,
   // },
   userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
 });

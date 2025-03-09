@@ -30,16 +30,20 @@ const ShopCart = ({ cart, setCart }) => {
       window.confirm("Are you sure you want to confirm your booking order?")
     ) {
       try {
-        const response = await fetch("/api/orders", {
+        const token = localStorage.getItem("token");
+        const response = await fetch("/api/cart/add", {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
           body: JSON.stringify({
             items: cart.map((item) => ({
               product: item.id,
               quantity: item.quantity,
             })),
             total: totalPrice,
-            user: "USER_ID_HERE", // Replace it with actual user ID
+            // user: "USER_ID_HERE", // Replace it with actual user ID
           }),
         });
 

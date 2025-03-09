@@ -7,9 +7,9 @@ const addToCart = async (req, res) => {
     const items = req.body.items;
     const userId = req.user._id;
 
-    console.log("addToCart called");
-    console.log("Received items:", items);
-    console.log("Received userId:", userId);
+    // console.log("addToCart called");
+    // console.log("Received items:", items);
+    // console.log("Received userId:", userId);
 
     let cart = await Cart.findOne({ userId });
 
@@ -32,7 +32,7 @@ const addToCart = async (req, res) => {
     }
 
     await cart.save();
-    console.log("Cart saved successfully:", cart);
+    // console.log("Cart saved successfully:", cart);
 
     res.status(200).json(cart);
   } catch (error) {
@@ -44,10 +44,12 @@ const addToCart = async (req, res) => {
 const getCart = async (req, res) => {
   try {
     const userId = req.user.id;
-    const cart = await Cart.findOne({ userId }).populate(
-      "items.productId",
-      "name price description",
-    );
+    const cart = await Cart.findOne({ userId })
+      .populate(
+        "items.productId",
+        // "name price description",
+      )
+      .populate("userId");
 
     if (!cart) {
       return res.json({ items: [] });
@@ -115,15 +117,20 @@ const checkout = async (req, res) => {
 
 const getCarts = async (req, res) => {
   try {
-    const userId = req.user.id;
-    const carts = await Cart.find({ userId }).populate(
-      "items.productId",
-      "name price description",
-    );
+    const userId = req.Cart.userId;
+    console.log("getCarts All called");
+    const carts = await Cart.find({ userId })
+      .populate("items.productId")
+      .populate("userId")
+      .sort({ createdAt: -1 });
+    // .populate("items.productId", "quantity", "name description price")
+    // .populate("userId", "email phoneNumber")
+    // .sort({ createdAt: -1 });
 
     res.json(carts);
   } catch (error) {
-    res.status(500).json({ error: "Failed to fetch carts" });
+    console.error("Error fetching All carts:", error); // Log the error
+    res.status(500).json({ error: "Failed to fetch All carts" });
   }
 };
 
