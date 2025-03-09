@@ -5,43 +5,43 @@ const addToCart = async (req, res) => {
   try {
     const { productId, quantity } = req.body;
 
-    // Validate that quantity is a positive number
     if (!Number.isInteger(quantity) || quantity < 1) {
       return res
         .status(400)
         .json({ message: "Quantity must be a positive integer" });
     }
 
-    // Find the product
     const product = await Product.findById(productId);
     if (!product) {
       return res.status(404).json({ message: "Product not found" });
     }
 
-    // Find the cart (assuming a single cart for simplicity)
-    let cart = await Cart.findOne();
+    let cart = await Cart.findOne({ user: req.user.id });
+
     if (!cart) {
-      cart = new Cart();
+      cart = new Cart({ user: req.user.id, items: [] });
     }
 
-    // Check if the product is already in the cart
-    const existingItem = cart.items.find((item) =>
-      item.productId.equals(productId),
+    const existingItem = cart.items.find(
+      (item) => item.product && item.product.equals(productId),
     );
+
     if (existingItem) {
-      // Update the quantity of the existing item
       existingItem.quantity += quantity;
     } else {
-      // Add the new item to the cart
-      cart.items.push({ productId, quantity });
+      cart.items.push({ product: productId, quantity }); // Store the product Id
     }
-    // Update the total price
-    cart.totalPrice = cart.items.reduce(
-      (total, item) => total + item.quantity * product.price,
-      0,
-    );
 
-    // Save the cart
+    cart = await Cart.findOne({ user: req.user.id }).populate("items.product");
+
+    cart.totalPrice = cart.items.reduce((total, cartItem) => {
+      if (!cartItem.product || !cartItem.product.price) {
+        console.error("Invalid product data:", cartItem);
+        return total;
+      }
+      return total + cartItem.quantity * cartItem.product.price;
+    }, 0);
+
     await cart.save();
 
     res.json(cart);
@@ -64,24 +64,37 @@ const removeFromCart = async (req, res) => {
 // Update cart item quantity
 const updateCartQuantity = async (req, res) => {
   try {
-    const { id } = req.params.id; // Cart item ID
+    const { id } = req.params; // Cart item ID
     const { quantity } = req.body; // New quantity
 
     if (quantity < 1) {
       return res.status(400).json({ error: "Quantity must be at least 1" });
     }
 
-    const updatedItem = await Cart.findByIdAndUpdate(
-      id,
-      { quantity },
-      { new: true },
+    const cart = await Cart.findOne({ user: userId }).populate("items.product");
+
+    if (!cart) {
+      return res.status(404).json({ error: "Cart not found" });
+    }
+
+    const cartItem = cart.items.find(
+      (item) => item.product._id.toString() === id,
     );
 
-    if (!updatedItem) {
+    if (!cartItem) {
       return res.status(404).json({ error: "Cart item not found" });
     }
 
-    res.json(updatedItem);
+    cartItem.quantity = quantity;
+
+    cart.totalPrice = cart.items.reduce(
+      (total, item) => total + item.quantity * item.product.price,
+      0,
+    );
+
+    await cart.save();
+
+    res.json(cart);
   } catch (error) {
     console.error("Error updating cart item quantity:", error);
     res.status(500).json({ error: "Failed to update cart quantity" });
@@ -90,17 +103,16 @@ const updateCartQuantity = async (req, res) => {
 
 const getCartItems = async (req, res) => {
   try {
-    const cartItems = await Cart.find().populate(
-      "productId",
-      "name description price",
-    );
+    const userId = req.user.id; // Get user id
+    let cart = await Cart.findOne({ user: userId })
+      .populate("user", "name email phoneNumber")
+      .populate("items.product", "name description price image");
 
-    // Check for missing products
-    const filteredCartItems = cartItems.filter(
-      (item) => item.productId !== null,
-    );
+    if (!cart) {
+      return res.json({ message: "Cart is empty", items: [] }); // Or res.json([])
+    }
 
-    res.json(filteredCartItems);
+    res.json(cart);
   } catch (error) {
     res.status(500).json({ error: "Failed to fetch cart items" });
   }

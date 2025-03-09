@@ -1,13 +1,53 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./ShopCart.css"; // Import CSS
 
-const ShopCart = ({ cart, setCart }) => {
-  const [orderConfirmed, setOrderConfirmed] = useState(false); // Add state
+const ShopCart = () => {
+  const [cart, setCartItems] = useState([]);
+  const [orderConfirmed, setOrderConfirmed] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchCart = async () => {
+      setLoading(true);
+      try {
+        const token = localStorage.getItem("token");
+        const response = await fetch("/api/cart", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch cart");
+        }
+
+        const data = await response.json();
+        setCartItems(data.items);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCart();
+  }, []);
 
   // Function to remove an item from the cart
-  const removeFromCart = (index) => {
-    const updatedCart = cart.filter((_, i) => i !== index);
-    setCart(updatedCart);
+  const removeFromCart = async (productId) => {
+    try {
+      const token = localStorage.getItem("token");
+      await fetch(`/api/cart/remove/${productId}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setCartItems(cart.filter((item) => item.product._id !== productId));
+    } catch (err) {
+      setError(err.message);
+    }
   };
 
   // // Function to handle booking
@@ -16,22 +56,44 @@ const ShopCart = ({ cart, setCart }) => {
   // };
 
   // Function to update quantity
-  const updateQuantity = async (index, change) => {
-    const updatedCart = [...cart];
-    updatedCart[index].quantity = Math.max(
-      1,
-      updatedCart[index].quantity + change,
-    );
-    setCart(updatedCart);
+  const updateQuantity = async (productId, newQuantity) => {
+    try {
+      const token = localStorage.getItem("token");
+      await fetch(`/api/cart/${productId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ quantity: newQuantity }),
+      });
+      setCartItems(
+        cart.map((item) =>
+          item.product._id === productId
+            ? { ...item, quantity: newQuantity }
+            : item,
+        ),
+      );
+    } catch (err) {
+      setError(err.message);
+    }
   };
 
-  const clearCart = () => {
-    if (
-      window.confirm("Are you sure you want to confirm your booking order?")
-    ) {
-      setCart([]);
-      setOrderConfirmed(true);
-      // Make API call to clear cart on the backend if needed
+  const clearCart = async () => {
+    if (window.confirm("Are you sure?")) {
+      try {
+        const token = localStorage.getItem("token");
+        await fetch("/api/cart/clear", {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setCartItems([]);
+        setOrderConfirmed(true);
+      } catch (err) {
+        setError(err.message);
+      }
     }
   };
 

@@ -8,8 +8,18 @@ export default function useCart(url) {
   useEffect(() => {
     const fetchCartItems = async () => {
       try {
-        const response = await fetch(url);
-        if (!response.ok) throw new Error("Failed to fetch cart items");
+        const token = localStorage.getItem("token");
+
+        const response = await fetch(url, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.error || "Failed to fetch cart items");
+        }
 
         const data = await response.json();
         setCartItems(data);
