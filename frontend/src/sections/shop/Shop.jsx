@@ -3,9 +3,13 @@ import Slider from "react-slick";
 import ShopCart from "../../components/shop-chart/ShopCart.jsx";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext"; // Adjust the path
 import "./Shop.css"; // Import CSS
 
 const Shop = () => {
+  const { user } = useContext(AuthContext);
+
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
 
@@ -28,18 +32,28 @@ const Shop = () => {
 
   const addToCart = async (product) => {
     try {
-      const response = await fetch("/api/cart/add", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ productId: product._id, quantity: 1 }),
-      });
-      if (!response.ok) {
-        throw new Error("Failed to add to cart");
+      const token = user?.accessToken; // Get the token from AuthContext
+
+      // const token = localStorage.getItem("token");
+      console.log("Token from localStorage:", token);
+      console.log("Authorization Header:", `Bearer ${token}`);
+      if (token) {
+        const response = await fetch("/api/cart/add", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ productId: product._id, quantity: 1 }),
+        });
+        if (!response.ok) {
+          throw new Error("Failed to add to cart");
+        }
+        const data = await response.json();
+        setCart([...cart, { ...product, quantity: 1, _id: data._id }]);
+      } else {
+        console.log("Cart after adding:", cart);
       }
-      const data = await response.json();
-      setCart([...cart, { ...product, quantity: 1, _id: data._id }]);
     } catch (error) {
       console.error("Error adding to cart:", error);
     }
