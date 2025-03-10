@@ -4,7 +4,6 @@ import CartLists from "../shop-chart/CartLists";
 import useProducts from "../../hooks/useProducts";
 import ProductList from "../products/ProductList.jsx";
 import AddProductForm from "../products/AddProductForm.jsx";
-import OrderList from "../orders/OrderList.jsx";
 import useOrders from "../../hooks/useOrders.jsx";
 import useCart from "../../hooks/useCart.jsx";
 import AdminBookings from "./AdminBookings"; // Import AdminBookings Component
@@ -21,13 +20,6 @@ const AdminPanel = () => {
         return <h2 className="section-title">Users List</h2>;
       case "time-bookings":
         return <AdminBookings />; // Show the Bookings List component
-      case "orders":
-        return (
-          <div>
-            <h2 className="section-title">Orders List</h2>
-            <OrderList />
-          </div>
-        );
       case "cart-bookings":
         return (
           <div>
@@ -60,10 +52,6 @@ const AdminPanel = () => {
                 <p>35</p>
               </div>
               <div className="card">
-                <h3>Orders</h3>
-                <p>{orders.length}</p>
-              </div>
-              <div className="card">
                 <h3>Cart Reservations</h3>
                 <p>{cartItems.length}</p>
               </div>
@@ -83,11 +71,16 @@ const AdminPanel = () => {
       <div className="sidebar">
         <h4>Admin Panel</h4>
         <nav>
-          <button onClick={() => setActiveSection("dashboard")}>Dashboard</button>
+          <button onClick={() => setActiveSection("dashboard")}>
+            Dashboard
+          </button>
           <button onClick={() => setActiveSection("users")}>Users</button>
-          <button onClick={() => setActiveSection("time-bookings")}>Bookings</button>
-          <button onClick={() => setActiveSection("orders")}>Orders</button>
-          <button onClick={() => setActiveSection("cart-bookings")}>Cart Reservations</button>
+          <button onClick={() => setActiveSection("time-bookings")}>
+            Bookings
+          </button>
+          <button onClick={() => setActiveSection("cart-bookings")}>
+            Cart Reservations
+          </button>
           <button onClick={() => setActiveSection("products")}>Products</button>
           <button onClick={() => setActiveSection("settings")}>Settings</button>
         </nav>

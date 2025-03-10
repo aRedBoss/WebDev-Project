@@ -6,7 +6,7 @@ const AdminBookings = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4000/api/booking") // Adjust URL if needed
+      .get("/api/booking") // Adjust URL if needed
       .then((response) => setBookings(response.data))
       .catch((error) => console.error("Error fetching bookings:", error));
   }, []);
@@ -34,8 +34,12 @@ const AdminBookings = () => {
               <td className="border p-2">{booking.serviceType || "N/A"}</td>
               <td className="border p-2">{booking.email}</td>
               <td className="border p-2">{booking.phoneNumber}</td>
-              <td className="border p-2">{booking.barberName || "Not Assigned"}</td>
-              <td className="border p-2">{new Date(booking.bookingTime).toLocaleString()}</td>
+              <td className="border p-2">
+                {booking.barberName || "Not Assigned"}
+              </td>
+              <td className="border p-2">
+                {new Date(booking.bookingTime).toLocaleString()}
+              </td>
               <td className="border p-2">{booking.status}</td>
               <td className="border p-2">{booking.duration} min</td>
             </tr>
