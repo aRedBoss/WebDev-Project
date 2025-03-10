@@ -68,7 +68,7 @@ const ShopCart = ({ cart, setCart }) => {
                   </td>
                   <td>
                     <img
-                      src={item.image}
+                      src={`http://localhost:4000${item.image}`} // Update image URL
                       alt={item.name}
                       className="cart-image"
                     />
