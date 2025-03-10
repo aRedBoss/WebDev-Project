@@ -4,14 +4,12 @@ import CartLists from "../shop-chart/CartLists";
 import useProducts from "../../hooks/useProducts";
 import ProductList from "../products/ProductList.jsx";
 import AddProductForm from "../products/AddProductForm.jsx";
-import useOrders from "../../hooks/useOrders.jsx";
 import useCart from "../../hooks/useCart.jsx";
 import AdminBookings from "./AdminBookings"; // Import AdminBookings Component
 
 const AdminPanel = () => {
   const [activeSection, setActiveSection] = useState("dashboard");
   const { products, loading, error } = useProducts([]);
-  const { orders, loadingOrders, errorOrders } = useOrders([]);
   const { cartItems, loadingCart, errorCart } = useCart([]);
 
   const renderContent = () => {
