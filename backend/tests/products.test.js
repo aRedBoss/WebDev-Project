@@ -1,4 +1,3 @@
-// productController.test.js
 const request = require("supertest");
 const express = require("express");
 const mongoose = require("mongoose");
@@ -8,7 +7,7 @@ const Product = require("../models/productModel");
 const app = express();
 app.use(express.json());
 
-// Mock routes
+// Routes
 app.get("/products", productController.getProducts);
 app.get("/products/:id", productController.getProductById);
 app.post("/products", productController.createProduct);
