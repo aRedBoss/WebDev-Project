@@ -52,7 +52,9 @@ const Shop = () => {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify({ productId: product._id, quantity: 1 }),
+          body: JSON.stringify({
+            items: [{ productId: product._id, quantity: 1 }],
+          }), // Send an array of items
         });
 
         if (!response.ok) {

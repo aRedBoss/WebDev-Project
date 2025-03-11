@@ -1,26 +1,36 @@
-import useCart from "../../hooks/useCart";
-import { useParams } from "react-router-dom";
+// CartLists.jsx
+import React from "react";
 
-export default function CartLists() {
-  const { id } = useParams();
-  const { cartItems, loading, error } = useCart("/api/cart");
+const CartLists = ({ cartItems, loading, error, userData }) => {
+  if (loading) {
+    return <p>Loading...</p>;
+  }
 
-  if (loading) return <p>Loading cart...</p>;
-  if (error) return <p>Error: {error}</p>;
-  if (cartItems.length === 0) return <p>Your cart is empty.</p>;
+  if (error) {
+    return <p>Error: {error.message}</p>;
+  }
+
+  if (!cartItems || cartItems.length === 0) {
+    return <p>No items in cart.</p>;
+  }
 
   return (
     <div>
+      {userData && (
+        <div>
+          <p>User: {userData.username}</p>
+          <p>Email: {userData.email}</p>
+        </div>
+      )}
       <ul>
         {cartItems.map((item) => (
-          <li key={item.productId._id}>
-            <h3>{item.productId.name}</h3>
-            <p>{item.productId.description}</p>
-            <p>Price: ${item.productId.price}</p>
-            <p>Quantity: {item.quantity}</p>
+          <li key={item._id}>
+            Product Name: {item.productId.name} - Quantity: {item.quantity}
           </li>
         ))}
       </ul>
     </div>
   );
-}
+};
+
+export default CartLists;
