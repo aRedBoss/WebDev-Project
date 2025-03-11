@@ -93,9 +93,7 @@ const ShopCart = ({ cart, setCart }) => {
                       +
                     </button>
                   </td>
-                  <td>
-                    €{(parseFloat(item.price) * item.quantity).toFixed(2)}
-                  </td>
+                  <td>€{parseFloat(item.price).toFixed(2)}</td>
                   <td className="align-items-center">
                     {/*<button className="book-btn" onClick={() => bookItem(item)}>*/}
                     {/*  Book Item*/}
