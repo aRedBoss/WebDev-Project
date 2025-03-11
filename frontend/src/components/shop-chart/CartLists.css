@@ -24,6 +24,11 @@ h2.section-title {
     text-align: left;
 }
 
+.cart-table tfoot td {
+    text-align: center;
+    font-size: 1.1rem;
+}
+
 .cart-table .td-center {
     text-align: center;
 }

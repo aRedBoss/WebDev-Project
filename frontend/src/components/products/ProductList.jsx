@@ -60,7 +60,7 @@ const ProductList = ({ products, loading, error }) => {
                 <th>Name</th>
                 <th>Price</th>
                 <th>Quantity</th>
-                <th className="th-center">Action</th>
+                <th className="th-center">Actions</th>
                 <th className="th-center">Action</th>
               </tr>
             </thead>
@@ -75,7 +75,7 @@ const ProductList = ({ products, loading, error }) => {
                   </td>
                   <td>€{product.price}</td>
                   <td>{product.quantity}</td>
-                  <td className="td-center">
+                  <td className="th-center">
                     <button
                       className="edit-btn"
                       onClick={() => handleEdit(product._id)}
@@ -83,7 +83,7 @@ const ProductList = ({ products, loading, error }) => {
                       Edit
                     </button>
                   </td>
-                  <td className="td-center">
+                  <td className="th-center">
                     <button
                       className="remove-btn"
                       onClick={() => handleDelete(product._id)}

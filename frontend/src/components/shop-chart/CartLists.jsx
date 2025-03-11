@@ -23,18 +23,33 @@ const CartLists = ({ cartItems, loading, error, userData }) => {
       <table>
         <thead>
           <tr>
+            <th>Product ID</th>
             <th>Product Name</th>
+            <th>Price</th>
             <th>Quantity</th>
           </tr>
         </thead>
         <tbody>
           {cartItems.map((item) => (
             <tr key={item._id}>
+              <td>{item.productId.id}</td>
               <td>{item.productId.name}</td>
+              <td>€{item.productId.price}</td>
               <td>{item.quantity}</td>
             </tr>
           ))}
         </tbody>
+        <tfoot>
+          <tr>
+            <td className="total" colSpan="4">
+              <strong>Total Price:</strong> €
+              {cartItems.reduce(
+                (acc, item) => acc + item.productId.price * item.quantity,
+                0,
+              )}
+            </td>
+          </tr>
+        </tfoot>
       </table>
     </div>
   );
