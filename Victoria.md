@@ -1,12 +1,10 @@
 # Self-Assessment of CartController.js (Backend)
 
-###  Improving Code Quality
+##  Improving Code Quality
 
----
+## Code Readability and Reusability:
 
-### 1. Code Readability and Reusability:
-
-1. Calculate Total Price:
+### 1. Calculate Total Price:
 
 Instead of repeating the reduction logic, create a function:
    
@@ -26,7 +24,7 @@ Usage:
 cart.totalPrice = calculateTotalPrice(cart.items);
 ```
 
-2. Find Existing Cart Item:
+### 2. Find Existing Cart Item:
 
 The logic to find an existing item in the cart is repeated in addToCart. Extract it:
 
@@ -47,7 +45,7 @@ Usage:
 const existingItem = findExistingCartItem(cart.items, productId);
 ```
 
-3. Validate Quantity:
+### 3. Validate Quantity:
 
 The quantity validation logic is also used in multiple places. Extract it:
 
@@ -64,7 +62,7 @@ Usage:
 if (!validateQuantity(quantity)) { ... }
 ```
 
-4. Populate Cart Items:
+### 4. Populate Cart Items:
 
 The populated call is used in many places. Extract it if you want to reuse it multiple times.
 
@@ -82,7 +80,7 @@ Usage:
 cart = await populateCartItems(cart);
 ```
 
-5. Handle Cart Not Found:
+### 5. Handle Cart Not Found:
 
 If you have more functions that handle the case where the cart is not found, you can extract that logic.
 
