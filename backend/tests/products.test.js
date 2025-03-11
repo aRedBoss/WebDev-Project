@@ -20,10 +20,7 @@ describe("Product Controller", () => {
     await mongoose.connect(
       process.env.MONGO_URI_TEST ||
         "mongodb://127.0.0.1:27017/musa-barber-shop-test",
-      {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-      },
+      {},
     );
   });
 
