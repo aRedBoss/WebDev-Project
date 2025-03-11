@@ -8,26 +8,23 @@ import AddProductForm from "../products/AddProductForm.jsx";
 import useCart from "../../hooks/useCart.jsx";
 import AdminBookings from "./AdminBookings";
 import { AuthContext } from "../../context/AuthContext";
+import { bool } from "prop-types";
+import booking from "../../sections/booking/Booking.jsx";
 
 const AdminPanel = () => {
   const [activeSection, setActiveSection] = useState("dashboard");
   const { products, loading, error } = useProducts([]);
-  const [cartData, setCartData] = useState({ user: {}, items: [] });
   const { user } = useContext(AuthContext);
   const token = user?.accessToken; // Extract token from a user object
-  const userEmail = user?.email;
 
   // Log the token to check its value
-  console.log("Token:", token);
+  // console.log("Token:", token);
 
   const {
     cartItems,
     loading: loadingCart,
     error: errorCart,
   } = useCart("/api/cart", token);
-
-  // Ensure userData is correctly passed, using the user object from AuthContext
-  const userData = user;
 
   const renderContent = () => {
     switch (activeSection) {
@@ -42,7 +39,6 @@ const AdminPanel = () => {
             {Array.isArray(cartItems) ? (
               <CartLists
                 cartItems={cartItems}
-                userData={userData}
                 loading={loadingCart}
                 error={errorCart}
               />

@@ -4,10 +4,10 @@ const User = require("../models/userModel");
 const requireAuth = async (req, res, next) => {
   // verify auth
   const { authorization } = req.headers;
-  console.log("Authorization Header:", authorization); // Log the header
+  // console.log("Authorization Header:", authorization); // Log the header
 
   if (!authorization) {
-    console.log("Authorization header missing");
+    // console.log("Authorization header missing");
     return res.status(401).json({ error: "Authorization token required" });
   }
 

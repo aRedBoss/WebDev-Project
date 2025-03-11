@@ -1,3 +1,5 @@
+import "./CartLists.css";
+
 const CartLists = ({ cartItems, loading, error, userData }) => {
   if (loading) {
     return <p>Loading...</p>;
@@ -12,19 +14,28 @@ const CartLists = ({ cartItems, loading, error, userData }) => {
   }
 
   return (
-    <div>
+    <div className="cart-table">
       {userData && (
-        <div>
-          <p>Email: {userData?.email}</p>
+        <div className="user-info">
+          <p>Email: {userData.email}</p>
         </div>
       )}
-      <ul>
-        {cartItems.map((item) => (
-          <li key={item._id}>
-            Product Name: {item.productId.name} - Quantity: {item.quantity}
-          </li>
-        ))}
-      </ul>
+      <table>
+        <thead>
+          <tr>
+            <th>Product Name</th>
+            <th>Quantity</th>
+          </tr>
+        </thead>
+        <tbody>
+          {cartItems.map((item) => (
+            <tr key={item._id}>
+              <td>{item.productId.name}</td>
+              <td>{item.quantity}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };
