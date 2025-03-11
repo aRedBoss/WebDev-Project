@@ -60,22 +60,18 @@ const ProductList = ({ products, loading, error }) => {
                 <th>Name</th>
                 <th>Price</th>
                 <th>Quantity</th>
-                <th className="th-center">Action</th>
+                <th className="th-center">Actions</th>
                 <th className="th-center">Action</th>
               </tr>
             </thead>
             <tbody>
               {products.map((product) => (
                 <tr key={product._id} className="product-item">
-                  <td>
-                    <strong>{product.id}</strong>
-                  </td>
-                  <td>
-                    <strong>{product.name}</strong>
-                  </td>
+                  <td>{product.id}</td>
+                  <td>{product.name}</td>
                   <td>€{product.price}</td>
                   <td>{product.quantity}</td>
-                  <td className="td-center">
+                  <td className="th-center">
                     <button
                       className="edit-btn"
                       onClick={() => handleEdit(product._id)}
@@ -83,7 +79,7 @@ const ProductList = ({ products, loading, error }) => {
                       Edit
                     </button>
                   </td>
-                  <td className="td-center">
+                  <td className="th-center">
                     <button
                       className="remove-btn"
                       onClick={() => handleDelete(product._id)}

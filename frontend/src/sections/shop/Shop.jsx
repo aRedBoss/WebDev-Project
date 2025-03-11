@@ -5,10 +5,12 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext"; // Adjust the path
+import { useNavigate } from "react-router-dom";
 import "./Shop.css"; // Import CSS
 
 const Shop = () => {
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
@@ -34,6 +36,12 @@ const Shop = () => {
     try {
       const token = user?.accessToken; // Get the token from AuthContext
 
+      if (!token) {
+        console.log("No token found, redirecting to signin...");
+        navigate("/signin"); // Redirect to login page if no token
+        return;
+      }
+
       // const token = localStorage.getItem("token");
       console.log("Token from localStorage:", token);
       console.log("Authorization Header:", `Bearer ${token}`);
@@ -44,8 +52,11 @@ const Shop = () => {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify({ productId: product._id, quantity: 1 }),
+          body: JSON.stringify({
+            items: [{ productId: product._id, quantity: 1 }],
+          }), // Send an array of items
         });
+
         if (!response.ok) {
           throw new Error("Failed to add to cart");
         }

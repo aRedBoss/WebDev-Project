@@ -42,13 +42,13 @@ const ShopCart = ({ cart, setCart }) => {
   );
 
   return (
-    <section className="shop-cart">
+    <section className="shop-cart-shop">
       <h2>Shopping Cart</h2>
       {cart.length === 0 ? (
         <p>Your cart is empty.</p>
       ) : (
         <div>
-          <table className="cart-table">
+          <table className="cart-shop-table">
             <thead>
               <tr>
                 <th>Products</th>
@@ -70,7 +70,7 @@ const ShopCart = ({ cart, setCart }) => {
                     <img
                       src={`http://localhost:4000${item.image}`} // Update image URL
                       alt={item.name}
-                      className="cart-image"
+                      className="cart-shop-image"
                     />
                   </td>
                   <td>

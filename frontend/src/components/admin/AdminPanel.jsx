@@ -1,16 +1,30 @@
-import { useState } from "react";
+// frontend/src/components/admin/AdminPanel.jsx
+import { useState, useContext } from "react";
 import "./AdminPanel.css";
 import CartLists from "../shop-chart/CartLists";
 import useProducts from "../../hooks/useProducts";
 import ProductList from "../products/ProductList.jsx";
 import AddProductForm from "../products/AddProductForm.jsx";
 import useCart from "../../hooks/useCart.jsx";
-import AdminBookings from "./AdminBookings"; // Import AdminBookings Component
+import AdminBookings from "./AdminBookings";
+import { AuthContext } from "../../context/AuthContext";
+import { bool } from "prop-types";
+import booking from "../../sections/booking/Booking.jsx";
 
 const AdminPanel = () => {
   const [activeSection, setActiveSection] = useState("dashboard");
   const { products, loading, error } = useProducts([]);
-  const { cartItems, loadingCart, errorCart } = useCart([]);
+  const { user } = useContext(AuthContext);
+  const token = user?.accessToken; // Extract token from a user object
+
+  // Log the token to check its value
+  // console.log("Token:", token);
+
+  const {
+    cartItems,
+    loading: loadingCart,
+    error: errorCart,
+  } = useCart("/api/cart", token);
 
   const renderContent = () => {
     switch (activeSection) {
@@ -22,7 +36,15 @@ const AdminPanel = () => {
         return (
           <div>
             <h2 className="section-title">Cart Reservations List</h2>
-            <CartLists />
+            {Array.isArray(cartItems) ? (
+              <CartLists
+                cartItems={cartItems}
+                loading={loadingCart}
+                error={errorCart}
+              />
+            ) : (
+              <p>No cart items available.</p>
+            )}
           </div>
         );
       case "services":

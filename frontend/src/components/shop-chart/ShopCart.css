@@ -1,21 +1,21 @@
-/* Style for the shopping cart section */
-.shop-cart {
+/* Style for the shopping cart-shop section */
+.shop-cart-shop {
   width: 80%;
   max-width: 1000px; /* Prevents excessive stretching */
-  margin: 50px auto; /* Adds space between shop and cart */
+  margin: 50px auto; /* Adds space between shop and cart-shop */
   font-family: Arial, sans-serif;
 }
 
-/* Center the shopping cart title */
-.shop-cart h2 {
+/* Center the shopping cart-shop title */
+.shop-cart-shop h2 {
   text-align: center;
   font-size: 28px;
   font-weight: bold;
   margin-bottom: 20px;
 }
 
-/* Style for the cart table */
-.cart-table {
+/* Style for the cart-shop table */
+.cart-shop-table {
   width: 100%;
   border-collapse: collapse;
   background-color: white;
@@ -25,21 +25,21 @@
 }
 
 /* Table Header */
-.cart-table thead {
+.cart-shop-table thead {
   background-color: #007bff;
   color: white;
   font-weight: bold;
   text-align: left;
 }
 
-.cart-table th, .cart-table td {
+.cart-shop-table th, .cart-shop-table td {
   padding: 12px;
   text-align: center;
   /*border-bottom: 1px solid #ddd;*/
 }
 
 /* Style for product images */
-.cart-image {
+.cart-shop-image {
   width: 60px;
   height: 60px;
   object-fit: contain; /* Makes sure images fit well */
@@ -124,7 +124,7 @@
   justify-content: center; /* Centers the items */
   gap: 20px; /* Adjust spacing between cards */
   flex-wrap: wrap; /* Allows responsiveness */
-  margin-bottom: 40px; /* Adds space between shop and cart */
+  margin-bottom: 40px; /* Adds space between shop and cart-shop */
 }
 
 /* Shop Cards */

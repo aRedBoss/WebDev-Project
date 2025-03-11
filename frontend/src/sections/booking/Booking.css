@@ -1,8 +1,16 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  background-color: white !important;
+}
+
 .booking-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f3f4f6;
+  background-color: white;
 }
 
 .booking-form {

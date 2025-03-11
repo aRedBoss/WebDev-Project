@@ -3,39 +3,47 @@ const Product = require("../models/ProductModel"); // Import Product model
 
 const addToCart = async (req, res) => {
   try {
-    const { productId, quantity } = req.body;
+    const { items } = req.body;
     const userId = req.user.id;
 
-    if (!Number.isInteger(quantity) || quantity < 1) {
+    if (!Array.isArray(items) || items.length === 0) {
       return res
         .status(400)
-        .json({ message: "Quantity must be a positive integer" });
+        .json({ message: "Items must be a non-empty array" });
     }
 
-    const product = await Product.findById(productId);
-    if (!product) {
-      return res.status(404).json({ message: "Product not found" });
-    }
-
-    console.log("req.user:", req.user);
     let cart = await Cart.findOne({ user: userId });
-    console.log("Cart found:", cart);
 
     if (!cart) {
-      console.log("Creating new cart for user:", userId);
       cart = new Cart({ user: userId, items: [] });
-      console.log("New cart created:", cart);
     }
-    console.log("Cart before items access:", cart);
 
-    const existingItem = cart.items.find(
-      (item) => item.productId && item.productId.equals(productId),
-    );
+    for (const item of items) {
+      const { productId, quantity } = item;
 
-    if (existingItem) {
-      existingItem.quantity = quantity;
-    } else {
-      cart.items.push({ productId, quantity });
+      if (!Number.isInteger(quantity) || quantity <= 0) {
+        return res
+          .status(400)
+          .json({ message: "Quantity must be a positive integer" });
+      }
+
+      const product = await Product.findById(productId);
+      if (!product) {
+        return res
+          .status(404)
+          .json({ message: `Product not found: ${productId}` });
+      }
+
+      const existingItem = cart.items.find(
+        (cartItem) =>
+          cartItem.productId && cartItem.productId.equals(productId),
+      );
+
+      if (existingItem) {
+        existingItem.quantity += quantity;
+      } else {
+        cart.items.push({ productId, quantity });
+      }
     }
 
     cart = await cart.populate(
@@ -43,8 +51,8 @@ const addToCart = async (req, res) => {
       "name description price image",
     );
 
-    cart.totalPrice = cart.items.reduce((total, item) => {
-      return total + item.quantity * item.productId.price;
+    cart.totalPrice = cart.items.reduce((total, cartItem) => {
+      return total + cartItem.quantity * cartItem.productId.price;
     }, 0);
 
     await cart.save();
@@ -95,18 +103,28 @@ const updateCartQuantity = async (req, res) => {
 
 const getCartItems = async (req, res) => {
   try {
-    const cartItems = await Cart.find().populate(
-      "productId",
-      "name description price",
-    );
+    const userId = req.user.id; // Get the user ID from the request
+
+    const cart = await Cart.findOne({ user: userId })
+      .populate("items.productId", "name description price")
+      .populate({
+        path: "user",
+        select: "username email", //  the fields you want to retrieve
+      });
+
+    if (!cart) {
+      console.log("Cart not found for user:", userId);
+      return res.status(404).json({ message: "Cart not found" });
+    }
 
     // Check for missing products
-    const filteredCartItems = cartItems.filter(
+    const filteredCartItems = cart.items.filter(
       (item) => item.productId !== null,
     );
 
-    res.json(filteredCartItems);
+    res.json({ user: cart.user, items: filteredCartItems }); // Include user info in the response
   } catch (error) {
+    console.error("Error fetching cart items:", error);
     res.status(500).json({ error: "Failed to fetch cart items" });
   }
 };

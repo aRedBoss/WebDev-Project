@@ -1,8 +1,13 @@
 import { useState } from "react";
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext"; // Adjust the path
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Booking.css";
 
 const Booking = () => {
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     clientName: "",
     serviceType: "haircut",
@@ -16,7 +21,7 @@ const Booking = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState("");
 
-   const handleChange = (e) => {
+  const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
   /*
@@ -45,35 +50,54 @@ const Booking = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const token = user?.accessToken; // Get the token from AuthContext
+
+    if (!token) {
+      console.log("No token found, redirecting to signin...");
+      navigate("/signin"); // Redirect to login page if no token
+      return;
+    }
+
     setIsSubmitted(true);
-  
+    setError(""); // Clear any previous errors
+
     const bookingData = {
       clientName: formData.clientName,
       serviceType: formData.serviceType,
       email: formData.email,
       phoneNumber: formData.phoneNumber,
       barberName: formData.barberName,
-      bookingTime: `${formData.date}T${formData.bookingTime}:00`,  
+      bookingTime: `${formData.date}T${formData.bookingTime}:00`,
     };
-  
-    console.log("Sending booking data to backend:", bookingData);  
-  
+
+    console.log("Sending booking data to backend:", bookingData);
+
     try {
-      const response = await axios.post("/api/booking", bookingData);
-      
+      const response = await axios.post("/api/booking", bookingData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
       console.log("Booking successful:", response.data);
-      
-      // Show success message
-      setError(""); 
       alert("Booking confirmed!");
     } catch (error) {
-      console.error("Error creating booking:", error.response?.data || error.message);
-      
+      console.error(
+        "Error creating booking:",
+        error.response?.data || error.message,
+      );
+
       // Set error message from backend
-      setError(error.response?.data?.message || "There was an error with your booking. Please try again.");
+      setError(
+        error.response?.data?.message ||
+          "There was an error with your booking. Please try again.",
+      );
+    } finally {
+      setIsSubmitted(false); // Reset the form submission state
     }
   };
-  
+
   return (
     <div className="booking-container">
       <div className="booking-form">
