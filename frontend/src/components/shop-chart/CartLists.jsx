@@ -1,6 +1,3 @@
-// CartLists.jsx
-import React from "react";
-
 const CartLists = ({ cartItems, loading, error, userData }) => {
   if (loading) {
     return <p>Loading...</p>;
@@ -18,8 +15,7 @@ const CartLists = ({ cartItems, loading, error, userData }) => {
     <div>
       {userData && (
         <div>
-          <p>User: {userData.username}</p>
-          <p>Email: {userData.email}</p>
+          <p>Email: {userData?.email}</p>
         </div>
       )}
       <ul>

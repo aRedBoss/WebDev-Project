@@ -26,6 +26,9 @@ const AdminPanel = () => {
     error: errorCart,
   } = useCart("/api/cart", token);
 
+  // Ensure userData is correctly passed, using the user object from AuthContext
+  const userData = user;
+
   const renderContent = () => {
     switch (activeSection) {
       case "users":
@@ -36,11 +39,10 @@ const AdminPanel = () => {
         return (
           <div>
             <h2 className="section-title">Cart Reservations List</h2>
-            {user && <p>User Email: {userEmail}</p>}
             {Array.isArray(cartItems) ? (
               <CartLists
                 cartItems={cartItems}
-                userData={user}
+                userData={userData}
                 loading={loadingCart}
                 error={errorCart}
               />
