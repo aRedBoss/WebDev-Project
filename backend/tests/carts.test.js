@@ -3,16 +3,13 @@ const mongoose = require("mongoose");
 const { MongoMemoryServer } = require("mongodb-memory-server");
 const Cart = require("../models/cartModel");
 
-describe("Cart Model Test", () => {
+describe("Cart Test", () => {
   let mongoServer;
 
   beforeAll(async () => {
     mongoServer = await MongoMemoryServer.create();
     const mongoUri = mongoServer.getUri();
-    await mongoose.connect(mongoUri, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    await mongoose.connect(mongoUri, {});
   });
 
   afterAll(async () => {
