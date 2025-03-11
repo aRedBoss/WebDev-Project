@@ -67,12 +67,8 @@ const ProductList = ({ products, loading, error }) => {
             <tbody>
               {products.map((product) => (
                 <tr key={product._id} className="product-item">
-                  <td>
-                    <strong>{product.id}</strong>
-                  </td>
-                  <td>
-                    <strong>{product.name}</strong>
-                  </td>
+                  <td>{product.id}</td>
+                  <td>{product.name}</td>
                   <td>€{product.price}</td>
                   <td>{product.quantity}</td>
                   <td className="th-center">

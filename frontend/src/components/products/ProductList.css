@@ -20,9 +20,13 @@ h2.section-title {
 
 .product-table th,
 .product-table td {
-    padding: 12px;
+    padding: 10px;
     border: 1px solid #dee2e6;
     text-align: left;
+}
+
+.product-table th {
+    padding: 18px;
 }
 
 .product-table .td-center {
